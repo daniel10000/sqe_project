@@ -1,0 +1,9 @@
+
+.summand {
+	-fx-font-size: 16pt;
+}
+
+.sum {
+	-fx-font-size: 24pt;
+	-fx-font-weight: bold;
+}
