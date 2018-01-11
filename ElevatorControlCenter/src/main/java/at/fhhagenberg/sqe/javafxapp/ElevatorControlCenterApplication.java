@@ -67,10 +67,12 @@ public class ElevatorControlCenterApplication extends Application
 //		GridPane root = new GridPane();
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Main.fxml"));
 		
-		Scene scene = new Scene(root, 800, 800);
+		Scene scene = new Scene(root, 400, 400);		
 		scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
+		primaryStage.setMinWidth(420);
+		primaryStage.setMinHeight(440);
 		primaryStage.setTitle("ElevatorSytem");
 		primaryStage.show();
 	}
