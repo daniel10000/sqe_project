@@ -11,13 +11,13 @@ import org.testfx.api.FxToolkit;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
 
-public class MyApplicationTest {
+public class ElevatorControlCenterApplicationTest {
 	FxRobot robot;
 
 	@Before
 	public void setup() throws TimeoutException {
 		FxToolkit.registerPrimaryStage();
-		FxToolkit.setupApplication(MyApplication.class);
+		FxToolkit.setupApplication(ElevatorControlCenterApplication.class);
 
 		robot = new FxRobot();
 	}
