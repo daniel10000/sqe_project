@@ -3,7 +3,7 @@ package at.fhhagenberg.sqe.elevator;
 import java.rmi.RemoteException;
 import java.util.Map;
 
-public class ElevatorSystem implements IElevator
+public class ElevatorSystem implements IElevatorSystem
 {
 	private static final Integer ELEVATORS = 3;
 	private static final Integer FLOORS = 4;
