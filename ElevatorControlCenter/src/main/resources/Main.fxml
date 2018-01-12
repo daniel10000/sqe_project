@@ -7,27 +7,333 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import com.sun.javafx.scene.control.skin.TableColumnHeader?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+	xmlns:fx="http://javafx.com/fxml" fx:controller="at.fhhagenberg.sqe.controller.ElevatorController"
+	gridLinesVisible="false">
+
+	<padding>
+		<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+	</padding>
+
+	<Label text="Elevator Control Center" GridPane.columnIndex="0"
+		GridPane.rowIndex="0" GridPane.columnSpan="3" GridPane.halignment="CENTER" 
+		style="-fx-font-size: 20;" >
+	</Label>
 
 	<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
-    xmlns:fx="http://javafx.com/fxml" 
-    fx:controller="at.fhhagenberg.sqe.controller.ElevatorController">
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </padding> 
-    <Label style="-fx-font: NORMAL 20 Tahoma;" text="Address Book"                
-        GridPane.columnIndex="0" GridPane.rowIndex="0">
-    </Label>
-    <TableView GridPane.columnIndex="0" 
-        GridPane.rowIndex="1">
-        <columns>
-<!--           <TableColumn text="First Name">
-          </TableColumn>
-          <TableColumn text="Last Name">
-          </TableColumn>
-          <TableColumn text="Email Address">
-          </TableColumn>
- -->     </columns>    
-    </TableView>
+		xmlns:fx="http://javafx.com/fxml" GridPane.columnIndex="0"
+		GridPane.rowIndex="1">
+
+		<Label text="ElevatorNr" GridPane.columnIndex="0"
+			GridPane.rowIndex="1">
+		</Label>
+		<TextField fx:id="textFieldElevatorNr" GridPane.columnIndex="0"
+			GridPane.rowIndex="2" editable="false" >
+		</TextField>
+
+		<Label text="Speed" GridPane.columnIndex="0" GridPane.rowIndex="3">
+		</Label>
+		<TextField fx:id="textFieldSpeed" GridPane.columnIndex="0"
+			GridPane.rowIndex="4" editable="false" >
+		</TextField>
+
+		<Label text="Acceleration" GridPane.columnIndex="0"
+			GridPane.rowIndex="5">
+		</Label>
+		<TextField fx:id="textFieldAcceleration"
+			GridPane.columnIndex="0" GridPane.rowIndex="6" editable="false" >
+		</TextField>
+
+		<Label text="Weight" GridPane.columnIndex="0" GridPane.rowIndex="7">
+		</Label>
+		<TextField fx:id="textFieldWeight" GridPane.columnIndex="0"
+			GridPane.rowIndex="8" editable="false">
+		</TextField>
+
+		<Label text="Capacity" GridPane.columnIndex="0"
+			GridPane.rowIndex="9">
+		</Label>
+		<TextField fx:id="textFieldCapacity" GridPane.columnIndex="0"
+			GridPane.rowIndex="10" editable="false">
+		</TextField>
+
 	</GridPane>
 
+	<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+		xmlns:fx="http://javafx.com/fxml" GridPane.columnIndex="1"
+		GridPane.rowIndex="1">
+
+		<ImageView fx:id="floor3UpButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="0" onMouseClicked="#buttonPressed">
+			<image>
+				<Image url="@arrow_up.png"></Image>
+
+			</image>
+
+		</ImageView>
+
+		<ImageView fx:id="floor3DownButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="1">
+			<image>
+				<Image url="@arrow_down.png"></Image>
+
+			</image>
+		</ImageView>
+
+
+		<ImageView fx:id="floor2UpButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="2">
+			<image>
+				<Image url="@arrow_up.png"></Image>
+
+			</image>
+
+		</ImageView>
+
+		<ImageView fx:id="floor2DownButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="3">
+			<image>
+				<Image url="@arrow_down.png"></Image>
+
+			</image>
+		</ImageView>
+
+		<ImageView fx:id="floor1UpButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="4">
+			<image>
+				<Image url="@arrow_up.png"></Image>
+
+			</image>
+
+		</ImageView>
+
+		<ImageView fx:id="floor1DownButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="5">
+			<image>
+				<Image url="@arrow_down.png"></Image>
+
+			</image>
+		</ImageView>
+
+
+		<ImageView fx:id="floor0UpButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="6">
+			<image>
+				<Image url="@arrow_up.png"></Image>
+
+			</image>
+
+		</ImageView>
+
+		<ImageView fx:id="floor0DownButton" GridPane.columnIndex="0"
+			GridPane.rowIndex="7">
+			<image>
+				<Image url="@arrow_down.png"></Image>
+
+			</image>
+		</ImageView>
+
+	</GridPane>
+
+	<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+		xmlns:fx="http://javafx.com/fxml" GridPane.columnIndex="2"
+		GridPane.rowIndex="1" gridLinesVisible="false" >
+
+		<ImageView fx:id="elevator1Direction" GridPane.columnIndex="0"
+			GridPane.rowIndex="0" GridPane.halignment="CENTER" >
+			<image>
+				<Image url="@line_horizontal_little.png"></Image>
+
+			</image>
+		</ImageView>
+
+
+		<Rectangle fx:id="elevator1Floor3" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="1">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator1Floor2" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="2">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator1Floor1" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="3">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator1Floor0" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="4">
+		</Rectangle>
+
+		<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+			xmlns:fx="http://javafx.com/fxml" GridPane.columnIndex="0"
+			GridPane.rowIndex="5">
+
+			<Rectangle fx:id="elevator1SelectedFloor3" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
+			</Rectangle>
+
+			<Label text="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+			</Label>
+
+			<Rectangle fx:id="elevator1SelectedFloor2" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="1">
+			</Rectangle>
+
+			<Label text="2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			</Label>
+
+			<Rectangle fx:id="elevator1SelectedFloor1" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="2">
+			</Rectangle>
+
+			<Label text="1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+			</Label>
+
+			<Rectangle fx:id="elevator1SelectedFloor0" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="3">
+			</Rectangle>
+
+			<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+			</Label>
+
+		</GridPane>
+
+		<Label text="Elevator1"  GridPane.columnIndex="0"
+			GridPane.rowIndex="6" onMousePressed="#elevator1Pressed" >
+		</Label>
+
+		<ImageView fx:id="elevator2Direction" GridPane.columnIndex="1"
+			GridPane.rowIndex="0" GridPane.halignment="CENTER">
+			<image>
+				<Image url="@line_horizontal_little.png"></Image>
+
+			</image>
+		</ImageView>
+
+		<Rectangle fx:id="elevator2Floor3" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="1">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator2Floor2" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="2">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator2Floor1" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="3">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator2Floor0" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="4">
+		</Rectangle>
+
+		<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+			xmlns:fx="http://javafx.com/fxml" GridPane.columnIndex="1"
+			GridPane.rowIndex="5">
+
+			<Rectangle fx:id="elevator2SelectedFloor3" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
+			</Rectangle>
+
+			<Label text="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+			</Label>
+
+			<Rectangle fx:id="elevator2SelectedFloor2" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="1">
+			</Rectangle>
+
+			<Label text="2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			</Label>
+
+			<Rectangle fx:id="elevator2SelectedFloor1" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="2">
+			</Rectangle>
+
+			<Label text="1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+			</Label>
+
+			<Rectangle fx:id="elevator2SelectedFloor0" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="3">
+			</Rectangle>
+
+			<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+			</Label>
+
+		</GridPane>
+
+		<Label text="Elevator2" GridPane.columnIndex="1"
+			GridPane.rowIndex="6" onMousePressed="#elevator2Pressed" >
+		</Label>
+
+		<ImageView fx:id="elevator3Direction" GridPane.columnIndex="2"
+			GridPane.rowIndex="0" GridPane.halignment="CENTER">
+			<image>
+				<Image url="@line_horizontal_little.png"></Image>
+
+			</image>
+		</ImageView>
+
+		<Rectangle fx:id="elevator3Floor3" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="1">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator3Floor2" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="2">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator3Floor1" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="3">
+		</Rectangle>
+
+		<Rectangle fx:id="elevator3Floor0" fill="WHITE" width="40"
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="4">
+		</Rectangle>
+
+		<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
+			xmlns:fx="http://javafx.com/fxml" GridPane.columnIndex="2"
+			GridPane.rowIndex="5">
+
+			<Rectangle fx:id="elevator3SelectedFloor3" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
+			</Rectangle>
+
+			<Label text="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+			</Label>
+
+			<Rectangle fx:id="elevator3SelectedFloor2" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="1">
+			</Rectangle>
+
+			<Label text="2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			</Label>
+
+			<Rectangle fx:id="elevator3SelectedFloor1" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="2">
+			</Rectangle>
+
+			<Label text="1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+			</Label>
+
+			<Rectangle fx:id="elevator3SelectedFloor0" fill="RED"
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="3">
+			</Rectangle>
+
+			<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" >
+			</Label>
+
+		</GridPane>
+		
+		<Label text="Elevator3" GridPane.columnIndex="2"
+			GridPane.rowIndex="6" onMousePressed="#elevator3Pressed" >
+		</Label>
+
+	</GridPane>
+</GridPane>
