@@ -1,11 +1,12 @@
-package at.fhhagenberg.sqe.elevator;
+package at.fhhagenberg.sqe.domain;
 
 import java.util.Map;
 
+import at.fhhagenberg.sqe.data.ElevatorNotifyable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Elevator 
+public class Elevator implements ElevatorNotifyable
 {
 	private IntegerProperty number = new SimpleIntegerProperty();
 	private IntegerProperty direction = new SimpleIntegerProperty();
@@ -157,4 +158,14 @@ public class Elevator
 	{
 		return capacity.get();
 	}	
+	
+	
+	
+	// ---------------------------------------------------------------------
+	
+	@Override
+	public void floorChanged(int floor)
+	{
+		setCurrentFloor(floor);
+	}
 }

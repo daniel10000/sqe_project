@@ -1,4 +1,4 @@
-package at.fhhagenberg.sqe.elevator;
+package at.fhhagenberg.sqe.domain;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;

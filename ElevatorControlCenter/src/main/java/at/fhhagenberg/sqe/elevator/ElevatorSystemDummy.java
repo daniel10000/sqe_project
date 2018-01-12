@@ -3,7 +3,10 @@ package at.fhhagenberg.sqe.elevator;
 import java.rmi.RemoteException;
 import java.util.Map;
 
-public class ElevatorSystem implements IElevatorSystem
+import at.fhhagenberg.sqe.domain.Elevator;
+import at.fhhagenberg.sqe.domain.Floor;
+
+public class ElevatorSystemDummy implements IElevatorSystem
 {
 	private static final Integer ELEVATORS = 3;
 	private static final Integer FLOORS = 4;
@@ -13,7 +16,7 @@ public class ElevatorSystem implements IElevatorSystem
 	private Map<Integer, Elevator> elevators;
 	private Map<Integer, Floor> floors;
 	
-	public ElevatorSystem() 
+	public ElevatorSystemDummy() 
 	{
 		for (int i = 1; i <= ELEVATORS; i++) 
 		{
