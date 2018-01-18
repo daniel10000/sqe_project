@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ElevatorSystemDummyTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorSystemDummyTest (18.01.2018 20:05:53)</a> &gt; <a href="../../index.html" class="el_group">ElevatorControlCenter</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.javafxapp</a> &gt; <span class="el_source">ElevatorSystemDummyTest.java</span></div><h1>ElevatorSystemDummyTest.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.javafxapp;
+
+import static org.junit.Assert.*;
+
+import java.rmi.RemoteException;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import at.fhhagenberg.sqe.elevator.ElevatorSystemDummy;
+
+<span class="fc" id="L12">public class ElevatorSystemDummyTest </span>
+{
+	private final static int ELEVATORS = 3;
+	private final static int FLOORS = 4;
+	private final static int ELEVATOR_CAPACITY = 10;
+	private final static int FLOOR_HEIGHT = 7;
+	
+	private final static int ELEVATOR_DOORS_OPEN = 1;
+	private final static int ELEVATOR_DOORS_CLOSED = 2;
+	private final static int ELEVATOR_DOORS_OPENING = 3;
+	private final static int ELEVATOR_DOORS_CLOSING = 4;
+		
+	private final static int ELEVATOR_DIRECTION_UP = 0;
+	private final static int ELEVATOR_DIRECTION_DOWN = 1;
+	private final static int ELEVATOR_DIRECTION_UNCOMMITTED = 2;		
+	
+<span class="fc" id="L28">	private final static Integer Elevator0 = 0;</span>
+<span class="fc" id="L29">	private final static Integer Elevator1 = 1;</span>
+<span class="fc" id="L30">	private final static Integer Elevator2 = 1;</span>
+	
+<span class="fc" id="L32">	private final static Integer Floor0 = 0;</span>
+<span class="fc" id="L33">	private final static Integer Floor1 = 1;</span>
+<span class="fc" id="L34">	private final static Integer Floor2 = 2;</span>
+<span class="fc" id="L35">	private final static Integer Floor3 = 3;</span>
+	
+	ElevatorSystemDummy elevatorSystemDummy;
+	
+	@Before
+	public void setup() 
+	{
+<span class="fc" id="L42">		elevatorSystemDummy = new ElevatorSystemDummy();</span>
+<span class="fc" id="L43">	}</span>
+	
+	@Test
+	public void testGetCommittedDirectionINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L48">		int elevator0committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator0);</span>
+<span class="fc" id="L49">		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator0committedDirection);</span>
+		
+<span class="fc" id="L51">		int elevator1committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator1);</span>
+<span class="fc" id="L52">		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator1committedDirection);</span>
+		
+<span class="fc" id="L54">		int elevator2committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator2);</span>
+<span class="fc" id="L55">		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator2committedDirection);		</span>
+<span class="fc" id="L56">	}</span>
+
+	@Test
+	public void testGetElevatorAccelINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L61">		int initialAcceleration = 0;</span>
+<span class="fc" id="L62">		int elevator0Acceleration = elevatorSystemDummy.getElevatorAccel(Elevator0);</span>
+<span class="fc" id="L63">		assertEquals(initialAcceleration, elevator0Acceleration);</span>
+		
+<span class="fc" id="L65">		int elevator1Acceleration = elevatorSystemDummy.getElevatorAccel(Elevator1);</span>
+<span class="fc" id="L66">		assertEquals(initialAcceleration, elevator1Acceleration);</span>
+		
+<span class="fc" id="L68">		int elevator2Acceleration = elevatorSystemDummy.getElevatorAccel(Elevator2);</span>
+<span class="fc" id="L69">		assertEquals(initialAcceleration, elevator2Acceleration);</span>
+<span class="fc" id="L70">	}</span>
+
+	@Test
+	public void testGetElevatorButtonINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L75">		boolean elevator0FloorButton0 = elevatorSystemDummy.getElevatorButton(Elevator0, Floor0);</span>
+<span class="fc" id="L76">		assertFalse(elevator0FloorButton0);</span>
+		
+<span class="fc" id="L78">		boolean elevator0FloorButton1 = elevatorSystemDummy.getElevatorButton(Elevator0, Floor1);</span>
+<span class="fc" id="L79">		assertFalse(elevator0FloorButton1);</span>
+		
+<span class="fc" id="L81">		boolean elevator0FloorButton2 = elevatorSystemDummy.getElevatorButton(Elevator0, Floor2);</span>
+<span class="fc" id="L82">		assertFalse(elevator0FloorButton2);</span>
+		
+<span class="fc" id="L84">		boolean elevator0FloorButton3 = elevatorSystemDummy.getElevatorButton(Elevator0, Floor3);</span>
+<span class="fc" id="L85">		assertFalse(elevator0FloorButton3);</span>
+		
+		
+<span class="fc" id="L88">		boolean elevator1FloorButton0 = elevatorSystemDummy.getElevatorButton(Elevator1, Floor0);</span>
+<span class="fc" id="L89">		assertFalse(elevator1FloorButton0);</span>
+		
+<span class="fc" id="L91">		boolean elevator1FloorButton1 = elevatorSystemDummy.getElevatorButton(Elevator1, Floor1);</span>
+<span class="fc" id="L92">		assertFalse(elevator1FloorButton1);</span>
+		
+<span class="fc" id="L94">		boolean elevator1FloorButton2 = elevatorSystemDummy.getElevatorButton(Elevator1, Floor2);</span>
+<span class="fc" id="L95">		assertFalse(elevator1FloorButton2);</span>
+		
+<span class="fc" id="L97">		boolean elevator1FloorButton3 = elevatorSystemDummy.getElevatorButton(Elevator1, Floor3);</span>
+<span class="fc" id="L98">		assertFalse(elevator1FloorButton3);</span>
+		
+		
+<span class="fc" id="L101">		boolean elevator2FloorButton0 = elevatorSystemDummy.getElevatorButton(Elevator2, Floor0);</span>
+<span class="fc" id="L102">		assertFalse(elevator2FloorButton0);</span>
+		
+<span class="fc" id="L104">		boolean elevator2FloorButton1 = elevatorSystemDummy.getElevatorButton(Elevator2, Floor1);</span>
+<span class="fc" id="L105">		assertFalse(elevator2FloorButton1);</span>
+		
+<span class="fc" id="L107">		boolean elevator2FloorButton2 = elevatorSystemDummy.getElevatorButton(Elevator2, Floor2);</span>
+<span class="fc" id="L108">		assertFalse(elevator2FloorButton2);</span>
+		
+<span class="fc" id="L110">		boolean elevator2FloorButton3 = elevatorSystemDummy.getElevatorButton(Elevator2, Floor3);</span>
+<span class="fc" id="L111">		assertFalse(elevator2FloorButton3);</span>
+<span class="fc" id="L112">	}</span>
+
+	@Test
+	public void testGetElevatorDoorStatusINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L117">		int elevator0DoorStatus = elevatorSystemDummy.getElevatorDoorStatus(Elevator0);</span>
+<span class="fc" id="L118">		assertEquals(ELEVATOR_DOORS_CLOSED, elevator0DoorStatus);</span>
+		
+<span class="fc" id="L120">		int elevator1DoorStatus = elevatorSystemDummy.getElevatorDoorStatus(Elevator1);</span>
+<span class="fc" id="L121">		assertEquals(ELEVATOR_DOORS_CLOSED, elevator1DoorStatus);</span>
+		
+<span class="fc" id="L123">		int elevator2DoorStatus = elevatorSystemDummy.getElevatorDoorStatus(Elevator2);</span>
+<span class="fc" id="L124">		assertEquals(ELEVATOR_DOORS_CLOSED, elevator2DoorStatus);</span>
+<span class="fc" id="L125">	}</span>
+
+	@Test
+	public void testGetElevatorFloorINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L130">		int initialFloor = 0;</span>
+<span class="fc" id="L131">		int elevator0CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator0);</span>
+<span class="fc" id="L132">		assertEquals(initialFloor, elevator0CurrentFloor);</span>
+		
+<span class="fc" id="L134">		int elevator1CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator1);</span>
+<span class="fc" id="L135">		assertEquals(initialFloor, elevator1CurrentFloor);</span>
+		
+<span class="fc" id="L137">		int elevator2CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator2);</span>
+<span class="fc" id="L138">		assertEquals(initialFloor, elevator2CurrentFloor);</span>
+<span class="fc" id="L139">	}</span>
+
+	@Test
+	public void testGetElevatorNum() throws RemoteException 
+	{
+<span class="fc" id="L144">		int elevators = elevatorSystemDummy.getElevatorNum();</span>
+<span class="fc" id="L145">		assertEquals(ELEVATORS, elevators);</span>
+<span class="fc" id="L146">	}</span>
+
+	@Test
+	public void testGetElevatorPositionINITIALSTATE() throws RemoteException
+	{
+<span class="fc" id="L151">		int initialHeight = 0;</span>
+<span class="fc" id="L152">		int elevator0HeightPosition = elevatorSystemDummy.getElevatorPosition(Elevator0);</span>
+<span class="fc" id="L153">		assertEquals(initialHeight, elevator0HeightPosition);</span>
+		
+<span class="fc" id="L155">		int elevator1HeightPosition = elevatorSystemDummy.getElevatorPosition(Elevator1);</span>
+<span class="fc" id="L156">		assertEquals(initialHeight, elevator1HeightPosition);</span>
+		
+<span class="fc" id="L158">		int elevator2HeightPosition = elevatorSystemDummy.getElevatorPosition(Elevator2);</span>
+<span class="fc" id="L159">		assertEquals(initialHeight, elevator2HeightPosition);</span>
+<span class="fc" id="L160">	}</span>
+
+	@Test
+	public void testGetElevatorSpeedINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L165">		int initialSpeed = 0;</span>
+<span class="fc" id="L166">		int elevator0Speed = elevatorSystemDummy.getElevatorSpeed(Elevator0);</span>
+<span class="fc" id="L167">		assertEquals(initialSpeed, elevator0Speed);</span>
+		
+<span class="fc" id="L169">		int elevator1Speed = elevatorSystemDummy.getElevatorSpeed(Elevator1);</span>
+<span class="fc" id="L170">		assertEquals(initialSpeed, elevator1Speed);</span>
+		
+<span class="fc" id="L172">		int elevator2Speed = elevatorSystemDummy.getElevatorSpeed(Elevator2);</span>
+<span class="fc" id="L173">		assertEquals(initialSpeed, elevator2Speed);</span>
+<span class="fc" id="L174">	}</span>
+
+	@Test
+	public void testGetElevatorWeightINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L179">		int initialWeight = 0;</span>
+<span class="fc" id="L180">		int elevator0Weight = elevatorSystemDummy.getElevatorWeight(Elevator0);</span>
+<span class="fc" id="L181">		assertEquals(initialWeight, elevator0Weight);</span>
+		
+<span class="fc" id="L183">		int elevator1Weight = elevatorSystemDummy.getElevatorWeight(Elevator1);</span>
+<span class="fc" id="L184">		assertEquals(initialWeight, elevator1Weight);</span>
+		
+<span class="fc" id="L186">		int elevator2Weight = elevatorSystemDummy.getElevatorWeight(Elevator2);</span>
+<span class="fc" id="L187">		assertEquals(initialWeight, elevator2Weight);</span>
+<span class="fc" id="L188">	}</span>
+
+	@Test
+	public void testGetElevatorCapacityINITIALSTATE() throws RemoteException
+	{
+<span class="fc" id="L193">		int elevator0Capacity = elevatorSystemDummy.getElevatorCapacity(Elevator0);</span>
+<span class="fc" id="L194">		assertEquals(ELEVATOR_CAPACITY, elevator0Capacity);</span>
+		
+<span class="fc" id="L196">		int elevator1Capacity = elevatorSystemDummy.getElevatorCapacity(Elevator1);</span>
+<span class="fc" id="L197">		assertEquals(ELEVATOR_CAPACITY, elevator1Capacity);</span>
+		
+<span class="fc" id="L199">		int elevator2Capacity = elevatorSystemDummy.getElevatorCapacity(Elevator2);</span>
+<span class="fc" id="L200">		assertEquals(ELEVATOR_CAPACITY, elevator2Capacity);</span>
+<span class="fc" id="L201">	}</span>
+
+	@Test
+	public void testGetFloorButtonDownINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L206">		boolean floor0ButtonDown = elevatorSystemDummy.getFloorButtonDown(Floor0);</span>
+<span class="fc" id="L207">		assertFalse(floor0ButtonDown);</span>
+		
+<span class="fc" id="L209">		boolean floor1ButtonDown = elevatorSystemDummy.getFloorButtonDown(Floor1);</span>
+<span class="fc" id="L210">		assertFalse(floor1ButtonDown);</span>
+		
+<span class="fc" id="L212">		boolean floor2ButtonDown = elevatorSystemDummy.getFloorButtonDown(Floor2);</span>
+<span class="fc" id="L213">		assertFalse(floor2ButtonDown);</span>
+		
+<span class="fc" id="L215">		boolean floor3ButtonDown = elevatorSystemDummy.getFloorButtonDown(Floor3);</span>
+<span class="fc" id="L216">		assertFalse(floor3ButtonDown);</span>
+<span class="fc" id="L217">	}</span>
+
+	@Test
+	public void testGetFloorButtonUpINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L222">		boolean floor0ButtonUp = elevatorSystemDummy.getFloorButtonUp(Floor0);</span>
+<span class="fc" id="L223">		assertFalse(floor0ButtonUp);</span>
+		
+<span class="fc" id="L225">		boolean floor1ButtonUp = elevatorSystemDummy.getFloorButtonUp(Floor1);</span>
+<span class="fc" id="L226">		assertFalse(floor1ButtonUp);</span>
+		
+<span class="fc" id="L228">		boolean floor2ButtonUp = elevatorSystemDummy.getFloorButtonUp(Floor2);</span>
+<span class="fc" id="L229">		assertFalse(floor2ButtonUp);</span>
+		
+<span class="fc" id="L231">		boolean floor3ButtonUp = elevatorSystemDummy.getFloorButtonUp(Floor3);</span>
+<span class="fc" id="L232">		assertFalse(floor3ButtonUp);</span>
+<span class="fc" id="L233">	}</span>
+
+	@Test
+	public void testGetFloorHeight() throws RemoteException 
+	{
+<span class="fc" id="L238">		int floorHeight = elevatorSystemDummy.getFloorHeight();</span>
+<span class="fc" id="L239">		assertEquals(FLOOR_HEIGHT, floorHeight);</span>
+<span class="fc" id="L240">	}</span>
+
+	@Test
+	public void testGetFloorNum() throws RemoteException 
+	{
+<span class="fc" id="L245">		int floors = elevatorSystemDummy.getFloorNum();</span>
+<span class="fc" id="L246">		assertEquals(FLOORS, floors);</span>
+<span class="fc" id="L247">	}</span>
+
+	@Test
+	public void testGetServicesFloorsINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L252">		boolean elevator0ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor0);</span>
+<span class="fc" id="L253">		assertTrue(elevator0ServicesFloor0);</span>
+		
+<span class="fc" id="L255">		boolean elevator0ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor1);</span>
+<span class="fc" id="L256">		assertFalse(elevator0ServicesFloor1);</span>
+		
+<span class="fc" id="L258">		boolean elevator0ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor2);</span>
+<span class="fc" id="L259">		assertTrue(elevator0ServicesFloor2);</span>
+		
+<span class="fc" id="L261">		boolean elevator0ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor3);</span>
+<span class="fc" id="L262">		assertFalse(elevator0ServicesFloor3);</span>
+		
+		
+<span class="fc" id="L265">		boolean elevator1ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor0);</span>
+<span class="fc" id="L266">		assertFalse(elevator1ServicesFloor0);</span>
+		
+<span class="fc" id="L268">		boolean elevator1ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor1);</span>
+<span class="fc" id="L269">		assertTrue(elevator1ServicesFloor1);</span>
+		
+<span class="fc" id="L271">		boolean elevator1ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor2);</span>
+<span class="fc" id="L272">		assertFalse(elevator1ServicesFloor2);</span>
+		
+<span class="fc" id="L274">		boolean elevator1ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor3);</span>
+<span class="fc" id="L275">		assertTrue(elevator1ServicesFloor3);</span>
+		
+		
+<span class="fc" id="L278">		boolean elevator2ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor0);</span>
+<span class="fc" id="L279">		assertFalse(elevator2ServicesFloor0);</span>
+		
+<span class="fc" id="L281">		boolean elevator2ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor1);</span>
+<span class="fc" id="L282">		assertTrue(elevator2ServicesFloor1);</span>
+		
+<span class="fc" id="L284">		boolean elevator2ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor2);</span>
+<span class="fc" id="L285">		assertFalse(elevator2ServicesFloor2);</span>
+		
+<span class="fc" id="L287">		boolean elevator2ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor3);</span>
+<span class="fc" id="L288">		assertTrue(elevator2ServicesFloor3);</span>
+<span class="fc" id="L289">	}</span>
+
+	@Test
+	public void testGetTargetINITIALSTATE() throws RemoteException 
+	{
+<span class="fc" id="L294">		int initialTargetFloor = 0;</span>
+<span class="fc" id="L295">		int elevator0TargetFloor = elevatorSystemDummy.getTarget(Elevator0);</span>
+<span class="fc" id="L296">		assertEquals(initialTargetFloor, elevator0TargetFloor);</span>
+		
+<span class="fc" id="L298">		int elevator1TargetFloor = elevatorSystemDummy.getTarget(Elevator1);</span>
+<span class="fc" id="L299">		assertEquals(initialTargetFloor, elevator1TargetFloor);</span>
+		
+<span class="fc" id="L301">		int elevator2TargetFloor = elevatorSystemDummy.getTarget(Elevator2);</span>
+<span class="fc" id="L302">		assertEquals(initialTargetFloor, elevator2TargetFloor);			</span>
+<span class="fc" id="L303">	}</span>
+
+	@Test
+	public void testSetCommittedDirection() throws RemoteException 
+	{
+<span class="fc" id="L308">		elevatorSystemDummy.setCommittedDirection(Elevator0, ELEVATOR_DIRECTION_UP);</span>
+<span class="fc" id="L309">		int elevator0committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator0);</span>
+<span class="fc" id="L310">		assertEquals(ELEVATOR_DIRECTION_UP, elevator0committedDirection);</span>
+		
+<span class="fc" id="L312">		elevatorSystemDummy.setCommittedDirection(Elevator0, ELEVATOR_DIRECTION_UNCOMMITTED);</span>
+<span class="fc" id="L313">		elevator0committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator0);</span>
+<span class="fc" id="L314">		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator0committedDirection);</span>
+		
+<span class="fc" id="L316">		elevatorSystemDummy.setCommittedDirection(Elevator0, ELEVATOR_DIRECTION_DOWN);</span>
+<span class="fc" id="L317">		elevator0committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator0);</span>
+<span class="fc" id="L318">		assertEquals(ELEVATOR_DIRECTION_DOWN, elevator0committedDirection);</span>
+		
+		
+<span class="fc" id="L321">		elevatorSystemDummy.setCommittedDirection(Elevator1, ELEVATOR_DIRECTION_UP);</span>
+<span class="fc" id="L322">		int elevator1committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator1);</span>
+<span class="fc" id="L323">		assertEquals(ELEVATOR_DIRECTION_UP, elevator1committedDirection);</span>
+		
+<span class="fc" id="L325">		elevatorSystemDummy.setCommittedDirection(Elevator1, ELEVATOR_DIRECTION_UNCOMMITTED);</span>
+<span class="fc" id="L326">		elevator1committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator1);</span>
+<span class="fc" id="L327">		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator1committedDirection);</span>
+		
+<span class="fc" id="L329">		elevatorSystemDummy.setCommittedDirection(Elevator1, ELEVATOR_DIRECTION_DOWN);</span>
+<span class="fc" id="L330">		elevator1committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator1);</span>
+<span class="fc" id="L331">		assertEquals(ELEVATOR_DIRECTION_DOWN, elevator1committedDirection);</span>
+		
+		
+<span class="fc" id="L334">		elevatorSystemDummy.setCommittedDirection(Elevator2, ELEVATOR_DIRECTION_UP);</span>
+<span class="fc" id="L335">		int elevator2committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator2);</span>
+<span class="fc" id="L336">		assertEquals(ELEVATOR_DIRECTION_UP, elevator2committedDirection);</span>
+		
+<span class="fc" id="L338">		elevatorSystemDummy.setCommittedDirection(Elevator2, ELEVATOR_DIRECTION_UNCOMMITTED);</span>
+<span class="fc" id="L339">		elevator2committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator2);</span>
+<span class="fc" id="L340">		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator2committedDirection);</span>
+		
+<span class="fc" id="L342">		elevatorSystemDummy.setCommittedDirection(Elevator2, ELEVATOR_DIRECTION_DOWN);</span>
+<span class="fc" id="L343">		elevator2committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator2);</span>
+<span class="fc" id="L344">		assertEquals(ELEVATOR_DIRECTION_DOWN, elevator2committedDirection);</span>
+<span class="fc" id="L345">	}</span>
+
+	@Test
+	public void testSetServicesFloors() throws RemoteException 
+	{
+<span class="fc" id="L350">		elevatorSystemDummy.setServicesFloors(Elevator0, Floor0, true);</span>
+<span class="fc" id="L351">		elevatorSystemDummy.setServicesFloors(Elevator0, Floor1, true);</span>
+<span class="fc" id="L352">		elevatorSystemDummy.setServicesFloors(Elevator0, Floor2, true);</span>
+<span class="fc" id="L353">		elevatorSystemDummy.setServicesFloors(Elevator0, Floor3, false);</span>
+		
+<span class="fc" id="L355">		boolean elevator0ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor0);</span>
+<span class="fc" id="L356">		assertTrue(elevator0ServicesFloor0);</span>
+		
+<span class="fc" id="L358">		boolean elevator0ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor1);</span>
+<span class="fc" id="L359">		assertTrue(elevator0ServicesFloor1);</span>
+		
+<span class="fc" id="L361">		boolean elevator0ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor2);</span>
+<span class="fc" id="L362">		assertTrue(elevator0ServicesFloor2);</span>
+		
+<span class="fc" id="L364">		boolean elevator0ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor3);</span>
+<span class="fc" id="L365">		assertFalse(elevator0ServicesFloor3);</span>
+		
+		
+<span class="fc" id="L368">		elevatorSystemDummy.setServicesFloors(Elevator1, Floor0, true);</span>
+<span class="fc" id="L369">		elevatorSystemDummy.setServicesFloors(Elevator1, Floor1, false);</span>
+<span class="fc" id="L370">		elevatorSystemDummy.setServicesFloors(Elevator1, Floor2, true);</span>
+<span class="fc" id="L371">		elevatorSystemDummy.setServicesFloors(Elevator1, Floor3, false);</span>
+		
+<span class="fc" id="L373">		boolean elevator1ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor0);</span>
+<span class="fc" id="L374">		assertTrue(elevator1ServicesFloor0);</span>
+		
+<span class="fc" id="L376">		boolean elevator1ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor1);</span>
+<span class="fc" id="L377">		assertFalse(elevator1ServicesFloor1);</span>
+		
+<span class="fc" id="L379">		boolean elevator1ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor2);</span>
+<span class="fc" id="L380">		assertTrue(elevator1ServicesFloor2);</span>
+		
+<span class="fc" id="L382">		boolean elevator1ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor3);</span>
+<span class="fc" id="L383">		assertFalse(elevator1ServicesFloor3);</span>
+		
+		
+<span class="fc" id="L386">		elevatorSystemDummy.setServicesFloors(Elevator2, Floor0, false);</span>
+<span class="fc" id="L387">		elevatorSystemDummy.setServicesFloors(Elevator2, Floor1, true);</span>
+<span class="fc" id="L388">		elevatorSystemDummy.setServicesFloors(Elevator2, Floor2, true);</span>
+<span class="fc" id="L389">		elevatorSystemDummy.setServicesFloors(Elevator2, Floor3, true);</span>
+		
+<span class="fc" id="L391">		boolean elevator2ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor0);</span>
+<span class="fc" id="L392">		assertFalse(elevator2ServicesFloor0);</span>
+		
+<span class="fc" id="L394">		boolean elevator2ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor1);</span>
+<span class="fc" id="L395">		assertTrue(elevator2ServicesFloor1);</span>
+		
+<span class="fc" id="L397">		boolean elevator2ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor2);</span>
+<span class="fc" id="L398">		assertTrue(elevator2ServicesFloor2);</span>
+		
+<span class="fc" id="L400">		boolean elevator2ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor3);</span>
+<span class="fc" id="L401">		assertTrue(elevator2ServicesFloor3);</span>
+<span class="fc" id="L402">	}</span>
+
+	@Test
+	public void testSetTarget() throws RemoteException 
+	{
+<span class="fc" id="L407">		int elevator0TargetFloor = 1;</span>
+<span class="fc" id="L408">		elevatorSystemDummy.setTarget(Elevator0, elevator0TargetFloor);</span>
+<span class="fc" id="L409">		int expectedElevator0TargetFloor = elevatorSystemDummy.getTarget(Elevator0);</span>
+<span class="fc" id="L410">		assertEquals(expectedElevator0TargetFloor, elevator0TargetFloor);		</span>
+		// ... tempus fugit
+<span class="fc" id="L412">		int elevator0CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator0);</span>
+<span class="fc" id="L413">		assertEquals(expectedElevator0TargetFloor, elevator0CurrentFloor);</span>
+		
+<span class="fc" id="L415">		int elevator1TargetFloor = 2;</span>
+<span class="fc" id="L416">		elevatorSystemDummy.setTarget(Elevator1, elevator1TargetFloor);</span>
+<span class="fc" id="L417">		int expectedElevator1TargetFloor = elevatorSystemDummy.getTarget(Elevator1);</span>
+<span class="fc" id="L418">		assertEquals(expectedElevator1TargetFloor, elevator1TargetFloor);		</span>
+		// ... tempus fugit
+<span class="fc" id="L420">		int elevator1CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator1);</span>
+<span class="fc" id="L421">		assertEquals(expectedElevator1TargetFloor, elevator1CurrentFloor);</span>
+		
+<span class="fc" id="L423">		int elevator2TargetFloor = 3;</span>
+<span class="fc" id="L424">		elevatorSystemDummy.setTarget(Elevator2, elevator2TargetFloor);</span>
+<span class="fc" id="L425">		int expectedElevator2TargetFloor = elevatorSystemDummy.getTarget(Elevator2);</span>
+<span class="fc" id="L426">		assertEquals(expectedElevator2TargetFloor, elevator2TargetFloor);		</span>
+		// ... tempus fugit
+<span class="fc" id="L428">		int elevator2CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator2);</span>
+<span class="fc" id="L429">		assertEquals(expectedElevator2TargetFloor, elevator2CurrentFloor);</span>
+<span class="fc" id="L430">	}</span>
+
+	@Test
+	public void testGetClockTick() throws RemoteException 
+	{
+<span class="fc" id="L435">		long expectedClockTick = 2;</span>
+<span class="fc" id="L436">		long clockTick = elevatorSystemDummy.getClockTick();</span>
+<span class="fc" id="L437">		assertEquals(expectedClockTick, clockTick);</span>
+<span class="fc" id="L438">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>ElevatorSystemDummyTest (18.01.2018 20:05:53)</div></body></html>

@@ -115,7 +115,8 @@ public class ElevatorSystemDummy implements IElevatorSystem
 	}
 
 	@Override
-	public int getElevatorPosition(int elevatorNumber) throws RemoteException {
+	public int getElevatorPosition(int elevatorNumber) throws RemoteException 
+	{
 		return elevators.get(elevatorNumber).getCurrentFloor() * FLOOR_HEIGHT;
 	}
 
@@ -189,13 +190,14 @@ public class ElevatorSystemDummy implements IElevatorSystem
 	public void setTarget(int elevatorNumber, int target) throws RemoteException 
 	{
 		elevators.get(elevatorNumber).setTargetFloor(target);
+		// ... tempus fugit
+		elevators.get(elevatorNumber).setCurrentFloor(target);
 	}
 
 	@Override
 	public long getClockTick() throws RemoteException 
 	{
-		// ???????????????????????
-		return 0;
+		return 2; // es ist nur ein dummy ....
 	}
 
 }

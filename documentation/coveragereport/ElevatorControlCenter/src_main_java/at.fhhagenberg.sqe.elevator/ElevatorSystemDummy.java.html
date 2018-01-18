@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ElevatorSystemDummy.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorSystemDummyTest (18.01.2018 20:05:53)</a> &gt; <a href="../../index.html" class="el_group">ElevatorControlCenter</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.elevator</a> &gt; <span class="el_source">ElevatorSystemDummy.java</span></div><h1>ElevatorSystemDummy.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.elevator;
+
+import java.rmi.RemoteException;
+import java.util.HashMap;
+import java.util.Map;
+
+import at.fhhagenberg.sqe.domain.Elevator;
+import at.fhhagenberg.sqe.domain.Floor;
+
+public class ElevatorSystemDummy implements IElevatorSystem
+{
+<span class="fc" id="L12">	private static final Integer ELEVATORS = 3;</span>
+<span class="fc" id="L13">	private static final Integer FLOORS = 4;</span>
+<span class="fc" id="L14">	private static final Integer ELEVATOR_CAPACITY = 10;</span>
+<span class="fc" id="L15">	private static final Integer FLOOR_HEIGHT = 7;</span>
+
+<span class="fc" id="L17">	private Map&lt;Integer, Elevator&gt; elevators = new HashMap&lt;Integer, Elevator&gt;();</span>
+<span class="fc" id="L18">	private Map&lt;Integer, Floor&gt; floors = new HashMap&lt;Integer, Floor&gt;();</span>
+	
+<span class="fc" id="L20">	public ElevatorSystemDummy() </span>
+	{
+<span class="fc bfc" id="L22" title="All 2 branches covered.">		for (int i = 0; i &lt; ELEVATORS; i++) </span>
+		{
+<span class="fc" id="L24">			elevators.put(i, new Elevator(i,ELEVATOR_CAPACITY));			</span>
+		}
+		
+<span class="fc bfc" id="L27" title="All 2 branches covered.">		for (int i = 0; i &lt; FLOORS; i++) </span>
+		{
+<span class="fc" id="L29">			floors.put(i, new Floor());			</span>
+		}
+		
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		for (int elevator = 0; elevator &lt; ELEVATORS; elevator++) </span>
+		{
+<span class="fc" id="L34">			elevators.get(elevator).setDirection(ELEVATOR_DIRECTION_UNCOMMITTED);</span>
+<span class="fc" id="L35">			elevators.get(elevator).setAcceleration(0);</span>
+			
+<span class="fc bfc" id="L37" title="All 2 branches covered.">			for (int floor = 0; floor &lt; FLOORS; floor++) </span>
+			{
+<span class="fc" id="L39">				elevators.get(elevator).setFloorButtons(floor,false);</span>
+				
+<span class="fc bfc" id="L41" title="All 2 branches covered.">				if(elevator % 2 == 0) </span>
+				{				
+<span class="fc bfc" id="L43" title="All 2 branches covered.">					if(floor % 2 == 0) </span>
+					{
+<span class="fc" id="L45">						elevators.get(elevator).setServicedFloors(floor, true);					</span>
+<span class="fc" id="L46">					}</span>
+					else 
+					{
+<span class="fc" id="L49">						elevators.get(elevator).setServicedFloors(floor, false);</span>
+					}
+<span class="fc" id="L51">				}</span>
+				else 
+				{
+<span class="fc bfc" id="L54" title="All 2 branches covered.">					if(floor % 2 == 0) </span>
+					{
+<span class="fc" id="L56">						elevators.get(elevator).setServicedFloors(floor, false);					</span>
+<span class="fc" id="L57">					}</span>
+					else 
+					{
+<span class="fc" id="L60">						elevators.get(elevator).setServicedFloors(floor, true);</span>
+					}
+				}
+			}
+			
+<span class="fc" id="L65">			elevators.get(elevator).setDoorStatus(ELEVATOR_DOORS_CLOSED);</span>
+<span class="fc" id="L66">			elevators.get(elevator).setCurrentFloor(0);</span>
+<span class="fc" id="L67">			elevators.get(elevator).setSpeed(0);</span>
+<span class="fc" id="L68">			elevators.get(elevator).setWeight(0);</span>
+<span class="fc" id="L69">			elevators.get(elevator).setCapacity(ELEVATOR_CAPACITY);</span>
+<span class="fc" id="L70">			elevators.get(elevator).setTargetFloor(0);</span>
+		}
+		
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		for (int floor = 0; floor &lt; FLOORS; floor++) </span>
+		{
+<span class="fc" id="L75">			floors.get(floor).setDownButton(false);</span>
+<span class="fc" id="L76">			floors.get(floor).setUpButton(false);</span>
+			//floors.get(floor).setHeight(7);
+		}
+<span class="fc" id="L79">	}</span>
+	
+	@Override
+	public int getCommittedDirection(int elevatorNumber) throws RemoteException 
+	{		
+<span class="fc" id="L84">		return elevators.get(elevatorNumber).getDirection();</span>
+	}
+
+	@Override
+	public int getElevatorAccel(int elevatorNumber) throws RemoteException 
+	{		
+<span class="fc" id="L90">		return elevators.get(elevatorNumber).getAcceleration();</span>
+	}
+
+	@Override
+	public boolean getElevatorButton(int elevatorNumber, int floor) throws RemoteException 
+	{		
+<span class="fc" id="L96">		return elevators.get(elevatorNumber).getFloorButtons().get(floor);</span>
+	}
+
+	@Override
+	public int getElevatorDoorStatus(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L102">		return elevators.get(elevatorNumber).getDoorStatus();</span>
+	}
+
+	@Override
+	public int getElevatorFloor(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L108">		return elevators.get(elevatorNumber).getCurrentFloor();</span>
+	}
+
+	@Override
+	public int getElevatorNum() throws RemoteException 
+	{
+<span class="fc" id="L114">		return elevators.size();</span>
+	}
+
+	@Override
+	public int getElevatorPosition(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L120">		return elevators.get(elevatorNumber).getCurrentFloor() * FLOOR_HEIGHT;</span>
+	}
+
+	@Override
+	public int getElevatorSpeed(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L126">		return elevators.get(elevatorNumber).getSpeed();</span>
+	}
+
+	@Override
+	public int getElevatorWeight(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L132">		return elevators.get(elevatorNumber).getWeight();</span>
+	}
+
+	@Override
+	public int getElevatorCapacity(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L138">		return elevators.get(elevatorNumber).getCapacity();</span>
+	}
+
+	@Override
+	public boolean getFloorButtonDown(int floor) throws RemoteException 
+	{
+<span class="fc" id="L144">		return floors.get(floor).getDownButton();</span>
+	}
+
+	@Override
+	public boolean getFloorButtonUp(int floor) throws RemoteException 
+	{
+<span class="fc" id="L150">		return floors.get(floor).getUpButton();</span>
+	}
+
+	@Override
+	public int getFloorHeight() throws RemoteException 
+	{
+<span class="fc" id="L156">		return FLOOR_HEIGHT;</span>
+	}
+
+	@Override
+	public int getFloorNum() throws RemoteException 
+	{
+<span class="fc" id="L162">		return FLOORS;</span>
+	}
+
+	@Override
+	public boolean getServicesFloors(int elevatorNumber, int floor) throws RemoteException {
+		
+<span class="fc" id="L168">		return elevators.get(elevatorNumber).getServicedFloors().get(floor);</span>
+	}
+
+	@Override
+	public int getTarget(int elevatorNumber) throws RemoteException 
+	{
+<span class="fc" id="L174">		return elevators.get(elevatorNumber).getTargetFloor();</span>
+	}
+
+	@Override
+	public void setCommittedDirection(int elevatorNumber, int direction) throws RemoteException 
+	{
+<span class="fc" id="L180">		elevators.get(elevatorNumber).setDirection(direction);</span>
+<span class="fc" id="L181">	}</span>
+
+	@Override
+	public void setServicesFloors(int elevatorNumber, int floor, boolean service) throws RemoteException 
+	{
+<span class="fc" id="L186">		elevators.get(elevatorNumber).setServicedFloors(floor, service);		</span>
+<span class="fc" id="L187">	}</span>
+
+	@Override
+	public void setTarget(int elevatorNumber, int target) throws RemoteException 
+	{
+<span class="fc" id="L192">		elevators.get(elevatorNumber).setTargetFloor(target);</span>
+		// ... tempus fugit
+<span class="fc" id="L194">		elevators.get(elevatorNumber).setCurrentFloor(target);</span>
+<span class="fc" id="L195">	}</span>
+
+	@Override
+	public long getClockTick() throws RemoteException 
+	{
+<span class="fc" id="L200">		return 2; // es ist nur ein dummy ....</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>ElevatorSystemDummyTest (18.01.2018 20:05:53)</div></body></html>

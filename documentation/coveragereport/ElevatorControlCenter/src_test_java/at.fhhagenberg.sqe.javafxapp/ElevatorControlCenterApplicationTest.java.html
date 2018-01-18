@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="de"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ElevatorControlCenterApplicationTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ElevatorSystemDummyTest (18.01.2018 20:05:53)</a> &gt; <a href="../../index.html" class="el_group">ElevatorControlCenter</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">at.fhhagenberg.sqe.javafxapp</a> &gt; <span class="el_source">ElevatorControlCenterApplicationTest.java</span></div><h1>ElevatorControlCenterApplicationTest.java</h1><pre class="source lang-java linenums">package at.fhhagenberg.sqe.javafxapp;
+
+import java.util.concurrent.TimeoutException;
+
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.testfx.api.FxAssert;
+import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
+import org.testfx.matcher.base.NodeMatchers;
+import org.testfx.matcher.control.LabeledMatchers;
+
+<span class="nc" id="L14">public class ElevatorControlCenterApplicationTest {</span>
+	FxRobot robot;
+
+	@Before
+	public void setup() throws TimeoutException {
+<span class="nc" id="L19">		FxToolkit.registerPrimaryStage();</span>
+<span class="nc" id="L20">		FxToolkit.setupApplication(ElevatorControlCenterApplication.class);</span>
+
+<span class="nc" id="L22">		robot = new FxRobot();</span>
+<span class="nc" id="L23">	}</span>
+
+	@Test
+	public void testComputeSum() {
+<span class="nc" id="L27">		robot.clickOn(&quot;#a&quot;).write(&quot;1&quot;);</span>
+<span class="nc" id="L28">		robot.clickOn(&quot;#b&quot;).write(&quot;2&quot;);</span>
+
+<span class="nc" id="L30">		robot.clickOn(NodeMatchers.hasText(&quot;=&quot;));</span>
+
+<span class="nc" id="L32">		FxAssert.verifyThat(&quot;.label.sum&quot;, LabeledMatchers.hasText(&quot;3,00&quot;));</span>
+<span class="nc" id="L33">	}</span>
+
+	@Test
+	@Ignore
+	public void testComputeSumNoInput() {
+<span class="nc" id="L38">		robot.clickOn(&quot;#compute&quot;);</span>
+
+<span class="nc" id="L40">		FxAssert.verifyThat(&quot;.label.sum&quot;, LabeledMatchers.hasText(&quot;n/a&quot;));</span>
+<span class="nc" id="L41">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>ElevatorSystemDummyTest (18.01.2018 20:05:53)</div></body></html>

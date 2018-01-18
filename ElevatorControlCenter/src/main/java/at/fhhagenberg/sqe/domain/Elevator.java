@@ -42,7 +42,6 @@ public class Elevator //implements ElevatorNotifyable
 
 	public void setFloorButtons(Integer floor, Boolean pressed) 
 	{
-		floorButtons.remove(floor);
 		floorButtons.put(floor, pressed);
 	}
 	
@@ -52,7 +51,6 @@ public class Elevator //implements ElevatorNotifyable
 	
 	public void setServicedFloors(Integer floor, Boolean service) 
 	{
-		servicedFloors.remove(floor);
 		servicedFloors.put(floor, service);
 	}
 	
