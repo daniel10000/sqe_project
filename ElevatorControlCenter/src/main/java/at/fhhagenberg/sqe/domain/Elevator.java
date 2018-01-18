@@ -1,5 +1,6 @@
 package at.fhhagenberg.sqe.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import at.fhhagenberg.sqe.data.ElevatorNotifyable;
@@ -21,8 +22,8 @@ public class Elevator //implements ElevatorNotifyable
 	
 	private static final Integer FLOORS = 4;
 	
-	private Map<Integer, Boolean> servicedFloors;
-	private Map<Integer, Boolean> floorButtons;
+	private Map<Integer, Boolean> servicedFloors = new HashMap<Integer, Boolean>();;
+	private Map<Integer, Boolean> floorButtons = new HashMap<Integer, Boolean>();
 	
 	public Integer getTargetFloor() 
 	{
@@ -39,6 +40,12 @@ public class Elevator //implements ElevatorNotifyable
 		return floorButtons;
 	}
 
+	public void setFloorButtons(Integer floor, Boolean pressed) 
+	{
+		floorButtons.remove(floor);
+		floorButtons.put(floor, pressed);
+	}
+	
 	public Map<Integer, Boolean> getServicedFloors() {
 		return servicedFloors;
 	}
@@ -58,7 +65,7 @@ public class Elevator //implements ElevatorNotifyable
 		this.currentFloor.set(0);
 		this.targetFloor.set(0);
 		this.speed.set(0);
-		this.weight.set(capacity*70);
+		this.weight.set(capacity*155);
 		this.capacity.set(capacity);	
 		
 		for (int i = 0; i < FLOORS; i++) 
@@ -154,6 +161,11 @@ public class Elevator //implements ElevatorNotifyable
 		return number.get();
 	}
 
+	public void setCapacity(Integer capacity) 
+	{
+		this.capacity.set(capacity);
+	}
+	
 	public Integer getCapacity() 
 	{
 		return capacity.get();

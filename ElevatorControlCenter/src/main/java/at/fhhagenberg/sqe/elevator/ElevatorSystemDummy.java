@@ -1,6 +1,7 @@
 package at.fhhagenberg.sqe.elevator;
 
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.Map;
 
 import at.fhhagenberg.sqe.domain.Elevator;
@@ -12,20 +13,68 @@ public class ElevatorSystemDummy implements IElevatorSystem
 	private static final Integer FLOORS = 4;
 	private static final Integer ELEVATOR_CAPACITY = 8;
 	private static final Integer FLOOR_HEIGHT = 3;
-	
-	private Map<Integer, Elevator> elevators;
-	private Map<Integer, Floor> floors;
+
+	private Map<Integer, Elevator> elevators = new HashMap<Integer, Elevator>();
+	private Map<Integer, Floor> floors = new HashMap<Integer, Floor>();
 	
 	public ElevatorSystemDummy() 
 	{
-		for (int i = 1; i <= ELEVATORS; i++) 
+		for (int i = 0; i < ELEVATORS; i++) 
 		{
 			elevators.put(i, new Elevator(i,ELEVATOR_CAPACITY));			
-		}		
+		}
 		
 		for (int i = 0; i < FLOORS; i++) 
 		{
 			floors.put(i, new Floor());			
+		}
+		
+		for (int elevator = 0; elevator < ELEVATORS; elevator++) 
+		{
+			elevators.get(elevator).setDirection(ELEVATOR_DIRECTION_UNCOMMITTED);
+			elevators.get(elevator).setAcceleration(0);
+			
+			for (int floor = 0; floor < FLOORS; floor++) 
+			{
+				elevators.get(elevator).setFloorButtons(floor,false);
+				
+				if(elevator % 2 == 0) 
+				{				
+					if(floor % 2 == 0) 
+					{
+						elevators.get(elevator).setServicedFloors(floor, true);					
+					}
+					else 
+					{
+						elevators.get(elevator).setServicedFloors(floor, false);
+					}
+				}
+				else 
+				{
+					if(floor % 2 == 0) 
+					{
+						elevators.get(elevator).setServicedFloors(floor, false);					
+					}
+					else 
+					{
+						elevators.get(elevator).setServicedFloors(floor, true);
+					}
+				}
+			}
+			
+			elevators.get(elevator).setDoorStatus(ELEVATOR_DOORS_CLOSED);
+			elevators.get(elevator).setCurrentFloor(0);
+			elevators.get(elevator).setSpeed(0);
+			elevators.get(elevator).setWeight(0);
+			elevators.get(elevator).setCapacity(0);
+			elevators.get(elevator).setTargetFloor(0);
+		}
+		
+		for (int floor = 0; floor < FLOORS; floor++) 
+		{
+			floors.get(floor).setDownButton(false);
+			floors.get(floor).setUpButton(false);
+			floors.get(floor).setHeight(7);
 		}
 	}
 	
