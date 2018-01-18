@@ -9,11 +9,11 @@ public class Floor
 {
 	private BooleanProperty upButton = new SimpleBooleanProperty();
 	private BooleanProperty downButton = new SimpleBooleanProperty();
-	private IntegerProperty height = new SimpleIntegerProperty();
+	//private IntegerProperty height = new SimpleIntegerProperty();
 	
 	public Floor() 
 	{
-		this.height.set(7);
+		//this.height.set(7);
 		this.upButton.set(false);
 		this.downButton.set(false);	
 	}
@@ -37,7 +37,7 @@ public class Floor
 	{
 		this.downButton.set(downButton);
 	}
-	
+	/*
 	public Integer getHeight()
 	{
 		return height.get();
@@ -47,4 +47,5 @@ public class Floor
 	{
 		this.height.set(height);
 	}
+	*/
 }
