@@ -6,7 +6,7 @@ import at.fhhagenberg.sqe.data.ElevatorNotifyable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Elevator implements ElevatorNotifyable
+public class Elevator //implements ElevatorNotifyable
 {
 	private IntegerProperty number = new SimpleIntegerProperty();
 	private IntegerProperty direction = new SimpleIntegerProperty();
@@ -157,15 +157,15 @@ public class Elevator implements ElevatorNotifyable
 	public Integer getCapacity() 
 	{
 		return capacity.get();
-	}	
+	}
 	
 	
 	
 	// ---------------------------------------------------------------------
 	
-	@Override
-	public void floorChanged(int floor)
-	{
-		setCurrentFloor(floor);
-	}
+//	@Override
+//	public void floorChanged(int nr, int floor)
+//	{
+//		setCurrentFloor(floor);
+//	}
 }

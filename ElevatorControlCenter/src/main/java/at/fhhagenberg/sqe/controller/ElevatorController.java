@@ -1,5 +1,9 @@
 package at.fhhagenberg.sqe.controller;
 
+import javax.activity.InvalidActivityException;
+
+import at.fhhagenberg.sqe.data.ElevatorNotifyable;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,9 +12,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class ElevatorController
+public class ElevatorController implements ElevatorNotifyable
 {
 	@FXML
 	Rectangle elevator1Floor3;
@@ -137,12 +143,14 @@ public class ElevatorController
 	
 	@FXML
 	protected void buttonPressed(){
-		String text = "Hello";//textArea.getText();
-		//textArea.setText(text);
-		Image img = floor3UpButton.getImage();
-		floor3UpButton.setImage(new Image("./arrow_up_green.png"));
-		String str = img.impl_getUrl();
-		//textArea.clear();
+//		String text = "Hello";//textArea.getText();
+//		//textArea.setText(text);
+//		Image img = floor3UpButton.getImage();
+//		floor3UpButton.setImage(new Image("./arrow_up_green.png"));
+//		String str = img.impl_getUrl();
+//		//textArea.clear();
+		
+		setFloorActive(0, 0);
 	}
 	
 	@FXML
@@ -163,9 +171,125 @@ public class ElevatorController
 		textFieldElevatorNr.setText("3");
 	}
 	
+	@FXML
+	protected void elevator1Pressed0()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator1Pressed1()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator1Pressed2()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator1Pressed3()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator2Pressed0()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator2Pressed1()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator2Pressed2()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator2Pressed3()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator3Pressed0()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator3Pressed1()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator3Pressed2()
+	{
+		
+	}
+	
+	@FXML
+	protected void elevator3Pressed3()
+	{
+		
+	}
+	
 	private IntegerProperty counter;
 	
 	public IntegerProperty counterProperty() {
 	    return counter;
+	}
+
+	@Override
+	public void floorChanged(int nr, int floor)
+	{
+		setFloorActive(nr, floor);
+	}
+	
+	
+	private void setFloorActive(int nr, int floor)
+	{
+		getRect(nr, floor).setFill(Color.YELLOW);
+	}
+	
+	private Rectangle getRect(int nr, int floor)
+	{
+		switch(nr)
+		{
+		case 0:
+			switch(floor)
+			{
+			case 0: return elevator1Floor0;
+			case 1: return elevator1Floor1;
+			case 2: return elevator1Floor2;
+			case 3: return elevator1Floor3;
+			}
+		case 1:
+			switch(floor)
+			{
+			case 0: return elevator2Floor0;
+			case 1: return elevator2Floor1;
+			case 2: return elevator2Floor2;
+			case 3: return elevator2Floor3;
+			}
+		case 2:
+			switch(floor)
+			{
+			case 0: return elevator3Floor0;
+			case 1: return elevator3Floor1;
+			case 2: return elevator3Floor2;
+			case 3: return elevator3Floor3;
+			}
+		}
+		return null;
 	}
 }
