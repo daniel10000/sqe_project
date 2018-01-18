@@ -11,8 +11,8 @@ public class ElevatorSystemDummy implements IElevatorSystem
 {
 	private static final Integer ELEVATORS = 3;
 	private static final Integer FLOORS = 4;
-	private static final Integer ELEVATOR_CAPACITY = 8;
-	private static final Integer FLOOR_HEIGHT = 3;
+	private static final Integer ELEVATOR_CAPACITY = 10;
+	private static final Integer FLOOR_HEIGHT = 7;
 
 	private Map<Integer, Elevator> elevators = new HashMap<Integer, Elevator>();
 	private Map<Integer, Floor> floors = new HashMap<Integer, Floor>();
@@ -66,7 +66,7 @@ public class ElevatorSystemDummy implements IElevatorSystem
 			elevators.get(elevator).setCurrentFloor(0);
 			elevators.get(elevator).setSpeed(0);
 			elevators.get(elevator).setWeight(0);
-			elevators.get(elevator).setCapacity(0);
+			elevators.get(elevator).setCapacity(ELEVATOR_CAPACITY);
 			elevators.get(elevator).setTargetFloor(0);
 		}
 		
@@ -74,7 +74,7 @@ public class ElevatorSystemDummy implements IElevatorSystem
 		{
 			floors.get(floor).setDownButton(false);
 			floors.get(floor).setUpButton(false);
-			floors.get(floor).setHeight(7);
+			//floors.get(floor).setHeight(7);
 		}
 	}
 	
@@ -116,8 +116,7 @@ public class ElevatorSystemDummy implements IElevatorSystem
 
 	@Override
 	public int getElevatorPosition(int elevatorNumber) throws RemoteException {
-		// ????????????????
-		return 0;
+		return elevators.get(elevatorNumber).getCurrentFloor() * FLOOR_HEIGHT;
 	}
 
 	@Override
