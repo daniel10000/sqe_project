@@ -158,19 +158,23 @@
 
 
 		<Rectangle fx:id="elevator1Floor3" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="0" GridPane.rowIndex="1">
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="1"
+			onMouseClicked="#elevator1Pressed3">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator1Floor2" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="0" GridPane.rowIndex="2">
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="2"
+			onMouseClicked="#elevator1Pressed2">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator1Floor1" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="0" GridPane.rowIndex="3">
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="3"
+			onMouseClicked="#elevator1Pressed1">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator1Floor0" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="0" GridPane.rowIndex="4">
+			height="40" GridPane.columnIndex="0" GridPane.rowIndex="4"
+			onMouseClicked="#elevator1Pressed0">
 		</Rectangle>
 
 		<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
@@ -178,7 +182,8 @@
 			GridPane.rowIndex="5">
 
 			<Rectangle fx:id="elevator1SelectedFloor3" fill="RED"
-				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="0">
+				width="15" height="15" GridPane.columnIndex="0" GridPane.rowIndex="0"
+				>
 			</Rectangle>
 
 			<Label text="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -220,19 +225,23 @@
 		</ImageView>
 
 		<Rectangle fx:id="elevator2Floor3" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="1"
+			onMouseClicked="#elevator2Pressed3">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator2Floor2" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="1" GridPane.rowIndex="2">
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="2"
+			onMouseClicked="#elevator2Pressed2">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator2Floor1" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="1" GridPane.rowIndex="3">
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="3"
+			onMouseClicked="#elevator2Pressed1">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator2Floor0" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="1" GridPane.rowIndex="4">
+			height="40" GridPane.columnIndex="1" GridPane.rowIndex="4"
+			onMouseClicked="#elevator2Pressed0">
 		</Rectangle>
 
 		<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"
@@ -282,19 +291,23 @@
 		</ImageView>
 
 		<Rectangle fx:id="elevator3Floor3" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="2" GridPane.rowIndex="1">
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="1"
+			onMouseClicked="#elevator3Pressed3">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator3Floor2" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="2" GridPane.rowIndex="2">
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="2"
+			onMouseClicked="#elevator3Pressed2">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator3Floor1" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="2" GridPane.rowIndex="3">
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="3"
+			onMouseClicked="#elevator3Pressed1">
 		</Rectangle>
 
 		<Rectangle fx:id="elevator3Floor0" fill="WHITE" width="40"
-			height="40" GridPane.columnIndex="2" GridPane.rowIndex="4">
+			height="40" GridPane.columnIndex="2" GridPane.rowIndex="4"
+			onMouseClicked="#elevator3Pressed0">
 		</Rectangle>
 
 		<GridPane alignment="CENTER" hgap="10.0" vgap="10.0"

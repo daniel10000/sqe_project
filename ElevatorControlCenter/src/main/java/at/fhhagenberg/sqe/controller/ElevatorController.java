@@ -1,5 +1,7 @@
 package at.fhhagenberg.sqe.controller;
 
+import java.io.Console;
+
 import javax.activity.InvalidActivityException;
 
 import at.fhhagenberg.sqe.data.ElevatorNotifyable;
@@ -142,7 +144,8 @@ public class ElevatorController implements ElevatorNotifyable
 	ImageView elevator3Direction;
 	
 	@FXML
-	protected void buttonPressed(){
+	protected void buttonPressed()
+	{
 //		String text = "Hello";//textArea.getText();
 //		//textArea.setText(text);
 //		Image img = floor3UpButton.getImage();
@@ -174,73 +177,73 @@ public class ElevatorController implements ElevatorNotifyable
 	@FXML
 	protected void elevator1Pressed0()
 	{
-		
+		System.out.println("elevator 1 0");
 	}
 	
 	@FXML
 	protected void elevator1Pressed1()
 	{
-		
+		System.out.println("elevator 1 1");		
 	}
 	
 	@FXML
 	protected void elevator1Pressed2()
 	{
-		
+		System.out.println("elevator 1 2");
 	}
 	
 	@FXML
 	protected void elevator1Pressed3()
 	{
-		
+		System.out.println("elevator 1 3");
 	}
 	
 	@FXML
 	protected void elevator2Pressed0()
 	{
-		
+		System.out.println("elevator 2 0");
 	}
 	
 	@FXML
 	protected void elevator2Pressed1()
 	{
-		
+		System.out.println("elevator 2 1");
 	}
 	
 	@FXML
 	protected void elevator2Pressed2()
 	{
-		
+		System.out.println("elevator 2 2");
 	}
 	
 	@FXML
 	protected void elevator2Pressed3()
 	{
-		
+		System.out.println("elevator 2 3");
 	}
 	
 	@FXML
 	protected void elevator3Pressed0()
 	{
-		
+		System.out.println("elevator 3 0");
 	}
 	
 	@FXML
 	protected void elevator3Pressed1()
 	{
-		
+		System.out.println("elevator 3 1");	
 	}
 	
 	@FXML
 	protected void elevator3Pressed2()
 	{
-		
+		System.out.println("elevator 3 2");	
 	}
 	
 	@FXML
 	protected void elevator3Pressed3()
 	{
-		
+		System.out.println("elevator 3 3");
 	}
 	
 	private IntegerProperty counter;
