@@ -253,23 +253,23 @@ public class ElevatorSystemDummyTest
 		assertTrue(elevator0ServicesFloor0);
 		
 		boolean elevator0ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor1);
-		assertFalse(elevator0ServicesFloor1);
+		assertTrue(elevator0ServicesFloor1);
 		
 		boolean elevator0ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor2);
 		assertTrue(elevator0ServicesFloor2);
 		
 		boolean elevator0ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor3);
-		assertFalse(elevator0ServicesFloor3);
+		assertTrue(elevator0ServicesFloor3);
 		
 		
 		boolean elevator1ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor0);
-		assertFalse(elevator1ServicesFloor0);
+		assertTrue(elevator1ServicesFloor0);
 		
 		boolean elevator1ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor1);
 		assertTrue(elevator1ServicesFloor1);
 		
 		boolean elevator1ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor2);
-		assertFalse(elevator1ServicesFloor2);
+		assertTrue(elevator1ServicesFloor2);
 		
 		boolean elevator1ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator1, Floor3);
 		assertTrue(elevator1ServicesFloor3);
@@ -279,17 +279,18 @@ public class ElevatorSystemDummyTest
 		assertTrue(elevator2ServicesFloor0);
 		
 		boolean elevator2ServicesFloor1 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor1);
-		assertFalse(elevator2ServicesFloor1);
+		assertTrue(elevator2ServicesFloor1);
 		
 		boolean elevator2ServicesFloor2 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor2);
 		assertTrue(elevator2ServicesFloor2);
 		
 		boolean elevator2ServicesFloor3 = elevatorSystemDummy.getServicesFloors(Elevator2, Floor3);
-		assertFalse(elevator2ServicesFloor3);
+		assertTrue(elevator2ServicesFloor3);
 	}
 
 	@Test
-	public void testGetTarget() {
+	public void testGetTarget() 
+	{
 		//fail("Not yet implemented");
 	}
 
