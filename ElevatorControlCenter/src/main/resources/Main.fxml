@@ -73,7 +73,7 @@
 		GridPane.rowIndex="1">
 
 		<ImageView fx:id="floor3UpButton" GridPane.columnIndex="0"
-			GridPane.rowIndex="0" onMouseClicked="#buttonPressed">
+			GridPane.rowIndex="0">
 			<image>
 				<Image url="@arrow_up.png"></Image>
 

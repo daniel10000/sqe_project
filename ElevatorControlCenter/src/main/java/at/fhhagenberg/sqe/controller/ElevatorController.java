@@ -4,8 +4,10 @@ import java.io.Console;
 
 import javax.activity.InvalidActivityException;
 
+import at.fhhagenberg.sqe.data.DataUpdater;
+import at.fhhagenberg.sqe.data.DoorStatus;
 import at.fhhagenberg.sqe.data.ElevatorNotifyable;
-
+import at.fhhagenberg.sqe.elevator.ElevatorSystemDummy;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +22,19 @@ import javafx.scene.shape.Rectangle;
 
 public class ElevatorController implements ElevatorNotifyable
 {
+	private static final int ELEVATOR_NUM = 3;
+	private static final int FLOOR_NUM = 4;
+	
+	private Commandable currentCommander = null;
+	
+	private DataUpdater updater = new DataUpdater(new ElevatorSystemDummy());
+	
+	public ElevatorController()
+	{
+		updater.registerElevator(this);
+		updater.start();
+	}
+	
 	@FXML
 	Rectangle elevator1Floor3;
 	
@@ -142,20 +157,7 @@ public class ElevatorController implements ElevatorNotifyable
 	
 	@FXML
 	ImageView elevator3Direction;
-	
-	@FXML
-	protected void buttonPressed()
-	{
-//		String text = "Hello";//textArea.getText();
-//		//textArea.setText(text);
-//		Image img = floor3UpButton.getImage();
-//		floor3UpButton.setImage(new Image("./arrow_up_green.png"));
-//		String str = img.impl_getUrl();
-//		//textArea.clear();
 		
-		setFloorActive(0, 0);
-	}
-	
 	@FXML
 	protected void elevator1Pressed() 
 	{
@@ -177,25 +179,53 @@ public class ElevatorController implements ElevatorNotifyable
 	@FXML
 	protected void elevator1Pressed0()
 	{
-		System.out.println("elevator 1 0");
+		try
+		{
+			updater.getElevatorSystem().setTarget(0, 0);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator1Pressed1()
 	{
-		System.out.println("elevator 1 1");		
+		try
+		{
+			updater.getElevatorSystem().setTarget(0, 1);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator1Pressed2()
 	{
-		System.out.println("elevator 1 2");
+		try
+		{
+			updater.getElevatorSystem().setTarget(0, 2);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator1Pressed3()
 	{
-		System.out.println("elevator 1 3");
+		try
+		{
+			updater.getElevatorSystem().setTarget(0, 3);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
@@ -250,20 +280,8 @@ public class ElevatorController implements ElevatorNotifyable
 	
 	public IntegerProperty counterProperty() {
 	    return counter;
-	}
-
-	@Override
-	public void floorChanged(int nr, int floor)
-	{
-		setFloorActive(nr, floor);
-	}
-	
-	
-	private void setFloorActive(int nr, int floor)
-	{
-		getRect(nr, floor).setFill(Color.YELLOW);
-	}
-	
+	}	
+		
 	private Rectangle getRect(int nr, int floor)
 	{
 		switch(nr)
@@ -294,5 +312,73 @@ public class ElevatorController implements ElevatorNotifyable
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void commitedDirectionChanged(int nr, int direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void accelChanged(int nr, int accel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void buttonChanged(int nr, int floor, boolean active) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void doorStatusChanged(int nr, int floor, DoorStatus status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void floorChanged(int nr, int floor)
+	{
+		for(int i = 0; i < FLOOR_NUM; i++)
+			getRect(nr, i).setFill(Color.WHITE);
+		getRect(nr, floor).setFill(Color.YELLOW);
+	}
+
+	@Override
+	public void positionChanged(int nr, int position) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void speedChanged(int nr, int speed) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void weightChanged(int nr, int weight) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void capacityChanged(int nr, int capacity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void buttonUpChanged(int floor, boolean active) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void buttonDownChanged(int floor, boolean active) {
+		// TODO Auto-generated method stub
+		
 	}
 }
