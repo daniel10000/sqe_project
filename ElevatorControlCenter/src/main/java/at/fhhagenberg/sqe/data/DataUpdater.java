@@ -48,11 +48,11 @@ public class DataUpdater extends TimerTask
 		return system;
 	}
 
-	private void notifyFloorChanged(int nr, int floor)
+	private void notifyFloorChanged(int nr, int floor, DoorStatus door)
 	{
 		for(ElevatorNotifyable e : elevators)
 		{
-			e.floorChanged(nr, floor);
+			e.floorChanged(nr, floor, door);
 		}
 	}
 	
@@ -119,7 +119,8 @@ public class DataUpdater extends TimerTask
 		{
 			try
 			{
-				notifyFloorChanged(i, system.getElevatorFloor(i));
+				DoorStatus status = convertDoorStatus(system.getElevatorDoorStatus(i));
+				notifyFloorChanged(i, system.getElevatorFloor(i), status);
 				for(int j = 0; j < nrFloors; j++)
 					notifyElevatorButtonChanged(i, j, system.getElevatorButton(i, j));
 				notifyAccelChanged(i, system.getElevatorAccel(i));
@@ -145,5 +146,17 @@ public class DataUpdater extends TimerTask
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private DoorStatus convertDoorStatus(int door)
+	{
+		switch(door)
+		{
+		case 1:
+			return DoorStatus.Opened;
+		case 2:
+			return DoorStatus.Closed;
+		}
+		return null;
 	}
 }

@@ -43,7 +43,7 @@ public class ElevatorSystemDummyTest
 	}
 	
 	@Test
-	public void testGetCommittedDirectionINITIALSTATE() throws RemoteException 
+	public void testGetCommittedDirectionInitialState() throws RemoteException 
 	{
 		int elevator0committedDirection = elevatorSystemDummy.getCommittedDirection(Elevator0);
 		assertEquals(ELEVATOR_DIRECTION_UNCOMMITTED, elevator0committedDirection);
@@ -56,7 +56,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorAccelINITIALSTATE() throws RemoteException 
+	public void testGetElevatorAccelInitialState() throws RemoteException 
 	{
 		int initialAcceleration = 0;
 		int elevator0Acceleration = elevatorSystemDummy.getElevatorAccel(Elevator0);
@@ -70,7 +70,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorButtonINITIALSTATE() throws RemoteException 
+	public void testGetElevatorButtonInitialState() throws RemoteException 
 	{
 		boolean elevator0FloorButton0 = elevatorSystemDummy.getElevatorButton(Elevator0, Floor0);
 		assertFalse(elevator0FloorButton0);
@@ -112,7 +112,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorDoorStatusINITIALSTATE() throws RemoteException 
+	public void testGetElevatorDoorStatusInitialState() throws RemoteException 
 	{
 		int elevator0DoorStatus = elevatorSystemDummy.getElevatorDoorStatus(Elevator0);
 		assertEquals(ELEVATOR_DOORS_CLOSED, elevator0DoorStatus);
@@ -125,7 +125,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorFloorINITIALSTATE() throws RemoteException 
+	public void testGetElevatorFloorInitialState() throws RemoteException 
 	{
 		int initialFloor = 0;
 		int elevator0CurrentFloor = elevatorSystemDummy.getElevatorFloor(Elevator0);
@@ -146,7 +146,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorPositionINITIALSTATE() throws RemoteException
+	public void testGetElevatorPositionInitialState() throws RemoteException
 	{
 		int initialHeight = 0;
 		int elevator0HeightPosition = elevatorSystemDummy.getElevatorPosition(Elevator0);
@@ -160,7 +160,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorSpeedINITIALSTATE() throws RemoteException 
+	public void testGetElevatorSpeedInitialState() throws RemoteException 
 	{
 		int initialSpeed = 0;
 		int elevator0Speed = elevatorSystemDummy.getElevatorSpeed(Elevator0);
@@ -174,7 +174,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorWeightINITIALSTATE() throws RemoteException 
+	public void testGetElevatorWeightInitialState() throws RemoteException 
 	{
 		int initialWeight = 0;
 		int elevator0Weight = elevatorSystemDummy.getElevatorWeight(Elevator0);
@@ -188,7 +188,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetElevatorCapacityINITIALSTATE() throws RemoteException
+	public void testGetElevatorCapacityInitialState() throws RemoteException
 	{
 		int elevator0Capacity = elevatorSystemDummy.getElevatorCapacity(Elevator0);
 		assertEquals(ELEVATOR_CAPACITY, elevator0Capacity);
@@ -201,7 +201,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetFloorButtonDownINITIALSTATE() throws RemoteException 
+	public void testGetFloorButtonDownInitialState() throws RemoteException 
 	{
 		boolean floor0ButtonDown = elevatorSystemDummy.getFloorButtonDown(Floor0);
 		assertFalse(floor0ButtonDown);
@@ -217,7 +217,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetFloorButtonUpINITIALSTATE() throws RemoteException 
+	public void testGetFloorButtonUpInitialState() throws RemoteException 
 	{
 		boolean floor0ButtonUp = elevatorSystemDummy.getFloorButtonUp(Floor0);
 		assertFalse(floor0ButtonUp);
@@ -247,7 +247,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetServicesFloorsINITIALSTATE() throws RemoteException 
+	public void testGetServicesFloorsInitialState() throws RemoteException 
 	{
 		boolean elevator0ServicesFloor0 = elevatorSystemDummy.getServicesFloors(Elevator0, Floor0);
 		assertTrue(elevator0ServicesFloor0);
@@ -289,7 +289,7 @@ public class ElevatorSystemDummyTest
 	}
 
 	@Test
-	public void testGetTargetINITIALSTATE() throws RemoteException 
+	public void testGetTargetInitialState() throws RemoteException 
 	{
 		int initialTargetFloor = 0;
 		int elevator0TargetFloor = elevatorSystemDummy.getTarget(Elevator0);

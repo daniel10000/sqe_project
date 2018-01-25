@@ -7,10 +7,8 @@ public interface ElevatorNotifyable
 	void accelChanged(int nr, int accel);
 	
 	void buttonChanged(int nr, int floor, boolean active);
-	
-	void doorStatusChanged(int nr, int floor, DoorStatus status);
-	
-	void floorChanged(int nr, int floor);
+		
+	void floorChanged(int nr, int floor, DoorStatus status);
 	
 	void positionChanged(int nr, int position);
 	

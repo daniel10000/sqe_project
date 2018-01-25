@@ -400,6 +400,26 @@ public class ElevatorController implements ElevatorNotifyable
 	@Override
 	public void commitedDirectionChanged(int nr, int direction)
 	{
+		Image img;
+		switch(direction)
+		{
+		case 0:
+			img = new Image("./arrow_up_little.png");
+			break;
+		case 1:
+			img = new Image("./arrow_down_little.png");
+			break;
+		case 2:
+			img = new Image("./line_horizontal_little.png");
+			break;
+		}
+		switch(nr)
+		{
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		}
 		// TODO
 	}
 
@@ -415,7 +435,6 @@ public class ElevatorController implements ElevatorNotifyable
 	@Override
 	public void buttonChanged(int nr, int floor, boolean active)
 	{
-		System.out.println("nr floor active " + nr + " " + floor + " " + active);
 		Color color = active ? Color.GREEN : Color.RED;
 		switch(nr)
 		{
@@ -474,17 +493,11 @@ public class ElevatorController implements ElevatorNotifyable
 	}
 
 	@Override
-	public void doorStatusChanged(int nr, int floor, DoorStatus status)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void floorChanged(int nr, int floor)
+	public void floorChanged(int nr, int floor, DoorStatus door)
 	{
 		for(int i = 0; i < FLOOR_NUM; i++)
 			getRect(nr, i).setFill(Color.WHITE);
-		getRect(nr, floor).setFill(Color.YELLOW);
+		getRect(nr, floor).setFill(door == DoorStatus.Opened ? Color.YELLOW : Color.ORANGE);
 	}
 
 	@Override
