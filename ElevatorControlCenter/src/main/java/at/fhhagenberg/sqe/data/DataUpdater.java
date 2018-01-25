@@ -51,6 +51,22 @@ public class DataUpdater extends TimerTask
 		}
 	}
 	
+	private void notifyAccelChanged(int nr, int accel)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.accelChanged(nr, accel);
+		}
+	}
+	
+	private void notifySpeedChanged(int nr, int speed)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.speedChanged(nr, speed);
+		}
+	}
+	
 	private void notifyWeightChanged(int nr, int weight)
 	{
 		for(ElevatorNotifyable e : elevators)
@@ -69,6 +85,22 @@ public class DataUpdater extends TimerTask
 				notifyFloorChanged(i, system.getElevatorFloor(i));
 			}
 			catch (RemoteException e)
+			{
+				e.printStackTrace();
+			}
+			try
+			{
+				notifyAccelChanged(i, system.getElevatorAccel(i));
+			}
+			catch(RemoteException e)
+			{
+				e.printStackTrace();
+			}
+			try
+			{
+				notifySpeedChanged(i, system.getElevatorSpeed(i));
+			}
+			catch(RemoteException e)
 			{
 				e.printStackTrace();
 			}

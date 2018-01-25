@@ -25,12 +25,20 @@ public class ElevatorController implements ElevatorNotifyable
 	private static final int ELEVATOR_NUM = 3;
 	private static final int FLOOR_NUM = 4;
 	
+	private static final String UNIT_ACCEL = "";
+	private static final String UNIT_SPEED = "";
+	private static final String UNIT_WEIGHT = "";
+	
+	private static final int INIT_FLOOR = 0;
+	
 	private Commandable currentCommander = null;
 	
 	private DataUpdater updater = new DataUpdater(new ElevatorSystemDummy());
 	
 	public ElevatorController()
 	{
+//		setSelectedElevator(INIT_FLOOR);
+		
 		updater.registerElevator(this);
 		updater.start();
 	}
@@ -158,22 +166,28 @@ public class ElevatorController implements ElevatorNotifyable
 	@FXML
 	ImageView elevator3Direction;
 		
+	private int selectedElevator;
+	
 	@FXML
 	protected void elevator1Pressed() 
 	{
+		setSelectedElevator(0);
 		textFieldElevatorNr.setText("1");
+		selectedElevator = 0;
 	}
 	
 	@FXML
 	protected void elevator2Pressed() 
 	{
 		textFieldElevatorNr.setText("2");
+		selectedElevator = 1;
 	}
 	
 	@FXML
 	protected void elevator3Pressed() 
 	{
 		textFieldElevatorNr.setText("3");
+		selectedElevator = 2;
 	}
 	
 	@FXML
@@ -372,21 +386,24 @@ public class ElevatorController implements ElevatorNotifyable
 	}
 
 	@Override
-	public void commitedDirectionChanged(int nr, int direction) {
-		// TODO Auto-generated method stub
-		
+	public void commitedDirectionChanged(int nr, int direction)
+	{
+		// TODO
 	}
 
 	@Override
-	public void accelChanged(int nr, int accel) {
-		// TODO Auto-generated method stub
-		
+	public void accelChanged(int nr, int accel)
+	{
+		if(nr == selectedElevator)
+		{
+			setAccel(accel);
+		}
 	}
 
 	@Override
-	public void buttonChanged(int nr, int floor, boolean active) {
-		// TODO Auto-generated method stub
-		
+	public void buttonChanged(int nr, int floor, boolean active)
+	{
+		//TODO
 	}
 
 	@Override
@@ -410,32 +427,69 @@ public class ElevatorController implements ElevatorNotifyable
 	}
 
 	@Override
-	public void speedChanged(int nr, int speed) {
+	public void speedChanged(int nr, int speed)
+	{
+		if(nr == selectedElevator)
+		{
+			setSpeed(speed);
+		}
+	}
+
+	@Override
+	public void weightChanged(int nr, int weight)
+	{
+		if(nr == selectedElevator)
+		{
+			setWeight(weight);
+		}
+	}
+
+	@Override
+	public void capacityChanged(int nr, int capacity)
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void weightChanged(int nr, int weight) {
+	public void buttonUpChanged(int floor, boolean active)
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void capacityChanged(int nr, int capacity) {
+	public void buttonDownChanged(int floor, boolean active)
+	{
 		// TODO Auto-generated method stub
-		
 	}
-
-	@Override
-	public void buttonUpChanged(int floor, boolean active) {
-		// TODO Auto-generated method stub
-		
+	
+	
+	private void setAccel(int accel)
+	{
+		textFieldAcceleration.setText(accel + " " + UNIT_ACCEL);
 	}
-
-	@Override
-	public void buttonDownChanged(int floor, boolean active) {
-		// TODO Auto-generated method stub
-		
+	
+	private void setSpeed(int speed)
+	{
+		textFieldSpeed.setText(speed + " " + UNIT_SPEED);
+	}
+	
+	private void setWeight(int weight)
+	{
+		textFieldWeight.setText(weight + " " + UNIT_WEIGHT);
+	}
+	
+	private void setSelectedElevator(int elevator)
+	{
+		selectedElevator = elevator;
+		textFieldElevatorNr.setText(Integer.toString(elevator+1));
 	}
 }
+
+
+
+
+
+
+
