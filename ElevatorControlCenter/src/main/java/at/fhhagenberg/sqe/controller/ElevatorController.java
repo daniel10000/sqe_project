@@ -231,54 +231,111 @@ public class ElevatorController implements ElevatorNotifyable
 	@FXML
 	protected void elevator2Pressed0()
 	{
-		System.out.println("elevator 2 0");
+		try
+		{
+			updater.getElevatorSystem().setTarget(1, 0);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator2Pressed1()
 	{
-		System.out.println("elevator 2 1");
+		try
+		{
+			updater.getElevatorSystem().setTarget(1, 1);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator2Pressed2()
 	{
-		System.out.println("elevator 2 2");
+		try
+		{
+			updater.getElevatorSystem().setTarget(1, 2);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator2Pressed3()
 	{
-		System.out.println("elevator 2 3");
+		try
+		{
+			updater.getElevatorSystem().setTarget(1, 3);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator3Pressed0()
 	{
-		System.out.println("elevator 3 0");
+		try
+		{
+			updater.getElevatorSystem().setTarget(2, 0);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator3Pressed1()
 	{
-		System.out.println("elevator 3 1");	
+		try
+		{
+			updater.getElevatorSystem().setTarget(2, 1);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator3Pressed2()
 	{
-		System.out.println("elevator 3 2");	
+		try
+		{
+			updater.getElevatorSystem().setTarget(2, 2);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	@FXML
 	protected void elevator3Pressed3()
 	{
-		System.out.println("elevator 3 3");
+		try
+		{
+			updater.getElevatorSystem().setTarget(2, 3);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	}
 	
 	private IntegerProperty counter;
 	
-	public IntegerProperty counterProperty() {
+	public IntegerProperty counterProperty()
+	{
 	    return counter;
 	}	
 		
