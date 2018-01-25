@@ -1,4 +1,4 @@
-package at.fhhagenberg.sqe.elevator;
+package sqelevator;
 
 /**
  * High-level interface to access and control the elevator system.
@@ -73,7 +73,7 @@ package at.fhhagenberg.sqe.elevator;
  * @version 0.1
  */
 
-public interface IElevatorSystem extends java.rmi.Remote {
+public interface IElevator extends java.rmi.Remote {
 	
 	/** State variable for elevator doors open.	 */
 	public final static int ELEVATOR_DOORS_OPEN = 1;	

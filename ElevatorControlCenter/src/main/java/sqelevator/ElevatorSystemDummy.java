@@ -1,4 +1,4 @@
-package at.fhhagenberg.sqe.elevator;
+package sqelevator;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 import at.fhhagenberg.sqe.domain.Elevator;
 import at.fhhagenberg.sqe.domain.Floor;
 
-public class ElevatorSystemDummy implements IElevatorSystem
+public class ElevatorSystemDummy implements IElevator
 {
 	private static final Integer ELEVATORS = 3;
 	private static final Integer FLOORS = 4;

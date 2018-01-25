@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import at.fhhagenberg.sqe.elevator.IElevatorSystem;
+import sqelevator.IElevator;
 
 public class DataUpdater extends TimerTask
 {
@@ -14,12 +14,17 @@ public class DataUpdater extends TimerTask
 	
 	private Set<ElevatorNotifyable> elevators = new HashSet<ElevatorNotifyable>();
 	
-	private IElevatorSystem system;
+	private IElevator system;
 
 	private Timer timer = new Timer();
+	
+	private int nrFloors;
+	private int nrElevators;
 
-	public DataUpdater(IElevatorSystem system)
+	public DataUpdater(IElevator system, int nrFloors, int nrElevators)
 	{
+		this.nrFloors = nrFloors;
+		this.nrElevators = nrElevators;
 		this.system = system;
 	}
 	
@@ -38,7 +43,7 @@ public class DataUpdater extends TimerTask
 		elevators.remove(elevator);
 	}
 	
-	public IElevatorSystem getElevatorSystem()
+	public IElevator getElevatorSystem()
 	{
 		return system;
 	}
@@ -48,6 +53,14 @@ public class DataUpdater extends TimerTask
 		for(ElevatorNotifyable e : elevators)
 		{
 			e.floorChanged(nr, floor);
+		}
+	}
+	
+	private void notifyElevatorButtonChanged(int nr, int floor, boolean active)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.buttonChanged(nr, floor, active);
 		}
 	}
 	
@@ -75,40 +88,59 @@ public class DataUpdater extends TimerTask
 		}
 	}
 	
+	private void notifyCapacityChanged(int nr, int capacity)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.capacityChanged(nr, capacity);
+		}
+	}
+	
+	private void notifyButtonUpChanged(int floor, boolean active)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.buttonUpChanged(floor, active);
+		}
+	}
+	
+	private void notifyButtonDownChanged(int floor, boolean active)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.buttonDownChanged(floor, active);
+		}
+	}
+	
 	@Override
 	public void run()
 	{
-		for(int i = 0; i < /*TODO*/3; i++)
+		for(int i = 0; i < nrElevators; i++)
 		{
 			try
 			{
 				notifyFloorChanged(i, system.getElevatorFloor(i));
-			}
-			catch (RemoteException e)
-			{
-				e.printStackTrace();
-			}
-			try
-			{
+				for(int j = 0; j < nrFloors; j++)
+					notifyElevatorButtonChanged(i, j, system.getElevatorButton(i, j));
 				notifyAccelChanged(i, system.getElevatorAccel(i));
-			}
-			catch(RemoteException e)
-			{
-				e.printStackTrace();
-			}
-			try
-			{
 				notifySpeedChanged(i, system.getElevatorSpeed(i));
+				notifyWeightChanged(i, system.getElevatorWeight(i));
+				notifyCapacityChanged(i, system.getElevatorCapacity(i));
 			}
 			catch(RemoteException e)
 			{
 				e.printStackTrace();
 			}
+		}
+		
+		for(int i = 0; i < nrFloors; i++)
+		{
 			try
 			{
-				notifyWeightChanged(i, system.getElevatorWeight(i));
+				notifyButtonUpChanged(i, system.getFloorButtonUp(i));
+				notifyButtonDownChanged(i, system.getFloorButtonDown(i));
 			}
-			catch(RemoteException e)
+			catch(Exception e)
 			{
 				e.printStackTrace();
 			}

@@ -28,7 +28,7 @@ public class ElevatorControlCenterApplication extends Application
 {	
 	@Override
 	public void start(Stage primaryStage) throws Exception 
-	{
+	{		
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Main.fxml"));
 		
 		Scene scene = new Scene(root, 500, 500);		

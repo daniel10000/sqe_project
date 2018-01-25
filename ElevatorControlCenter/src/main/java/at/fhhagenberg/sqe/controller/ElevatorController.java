@@ -1,13 +1,15 @@
 package at.fhhagenberg.sqe.controller;
 
 import java.io.Console;
+import java.rmi.Naming;
+
+import sqelevator.IElevator;
 
 import javax.activity.InvalidActivityException;
 
 import at.fhhagenberg.sqe.data.DataUpdater;
 import at.fhhagenberg.sqe.data.DoorStatus;
 import at.fhhagenberg.sqe.data.ElevatorNotifyable;
-import at.fhhagenberg.sqe.elevator.ElevatorSystemDummy;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,24 +21,34 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import sqelevator.ElevatorSystemDummy;
 
 public class ElevatorController implements ElevatorNotifyable
 {
 	private static final int ELEVATOR_NUM = 3;
 	private static final int FLOOR_NUM = 4;
 	
-	private static final String UNIT_ACCEL = "";
-	private static final String UNIT_SPEED = "";
-	private static final String UNIT_WEIGHT = "";
+	private static final String UNIT_ACCEL = "ft/s²";
+	private static final String UNIT_SPEED = "ft/s";
+	private static final String UNIT_WEIGHT = "lbs";
+	private static final String UNIT_CAPACITY = "";
 	
 	private static final int INIT_FLOOR = 0;
 	
 	private Commandable currentCommander = null;
 	
-	private DataUpdater updater = new DataUpdater(new ElevatorSystemDummy());
+	private DataUpdater updater;// = new DataUpdater(new ElevatorSystemDummy());
 	
 	public ElevatorController()
 	{
+		
+		try {
+			updater = new DataUpdater((IElevator) Naming.lookup("rmi://localhost/ElevatorSim"), FLOOR_NUM, ELEVATOR_NUM);
+//			updater = new DataUpdater(new ElevatorSystemDummy());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 //		setSelectedElevator(INIT_FLOOR);
 		
 		updater.registerElevator(this);
@@ -403,13 +415,68 @@ public class ElevatorController implements ElevatorNotifyable
 	@Override
 	public void buttonChanged(int nr, int floor, boolean active)
 	{
-		//TODO
+		System.out.println("nr floor active " + nr + " " + floor + " " + active);
+		Color color = active ? Color.GREEN : Color.RED;
+		switch(nr)
+		{
+		case 0:
+			switch(floor)
+			{
+			case 0:
+				elevator1SelectedFloor0.setFill(color);
+				break;
+			case 1:
+				elevator1SelectedFloor1.setFill(color);
+				break;
+			case 2:
+				elevator1SelectedFloor2.setFill(color);
+				break;
+			case 3:
+				elevator1SelectedFloor3.setFill(color);
+				break;
+			}
+			break;
+		case 1:
+			switch(floor)
+			{
+			case 0:
+				elevator2SelectedFloor0.setFill(color);
+				break;
+			case 1:
+				elevator2SelectedFloor1.setFill(color);
+				break;
+			case 2:
+				elevator2SelectedFloor2.setFill(color);
+				break;
+			case 3:
+				elevator2SelectedFloor3.setFill(color);
+				break;
+			}
+			break;
+		case 2:
+			switch(floor)
+			{
+			case 0:
+				elevator3SelectedFloor0.setFill(color);
+				break;
+			case 1:
+				elevator3SelectedFloor1.setFill(color);
+				break;
+			case 2:
+				elevator3SelectedFloor2.setFill(color);
+				break;
+			case 3:
+				elevator3SelectedFloor3.setFill(color);
+				break;
+			}
+			break;
+		}
 	}
 
 	@Override
-	public void doorStatusChanged(int nr, int floor, DoorStatus status) {
+	public void doorStatusChanged(int nr, int floor, DoorStatus status)
+	{
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -421,9 +488,9 @@ public class ElevatorController implements ElevatorNotifyable
 	}
 
 	@Override
-	public void positionChanged(int nr, int position) {
-		// TODO Auto-generated method stub
-		
+	public void positionChanged(int nr, int position)
+	{
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
@@ -447,21 +514,48 @@ public class ElevatorController implements ElevatorNotifyable
 	@Override
 	public void capacityChanged(int nr, int capacity)
 	{
-		// TODO Auto-generated method stub
-		
+		if(nr == selectedElevator)
+			setCapacity(capacity);
 	}
 
 	@Override
 	public void buttonUpChanged(int floor, boolean active)
 	{
-		// TODO Auto-generated method stub
-		
+		switch(floor)
+		{
+		case 0:
+			setButtonUp(floor0UpButton, active);
+			break;
+		case 1:
+			setButtonUp(floor1UpButton, active);
+			break;
+		case 2:
+			setButtonUp(floor2UpButton, active);
+			break;
+		case 3:
+			setButtonUp(floor3UpButton, active);
+			break;
+		}		
 	}
 
 	@Override
 	public void buttonDownChanged(int floor, boolean active)
 	{
-		// TODO Auto-generated method stub
+		switch(floor)
+		{
+		case 0:
+			setButtonDown(floor0DownButton, active);
+			break;
+		case 1:
+			setButtonDown(floor1DownButton, active);
+			break;
+		case 2:
+			setButtonDown(floor2DownButton, active);
+			break;
+		case 3:
+			setButtonDown(floor3DownButton, active);
+			break;
+		}
 	}
 	
 	
@@ -479,11 +573,28 @@ public class ElevatorController implements ElevatorNotifyable
 	{
 		textFieldWeight.setText(weight + " " + UNIT_WEIGHT);
 	}
+
+	private void setCapacity(int capacity)
+	{
+		textFieldCapacity.setText(capacity + " " + UNIT_CAPACITY);
+	}
 	
 	private void setSelectedElevator(int elevator)
 	{
 		selectedElevator = elevator;
 		textFieldElevatorNr.setText(Integer.toString(elevator+1));
+	}
+	
+	private void setButtonUp(ImageView view, boolean active)
+	{
+		Image img = new Image(active ? "./arrow_up_green.png" : "./arrow_up_red.png");
+		view.setImage(img);
+	}
+	
+	private void setButtonDown(ImageView view, boolean active)
+	{
+		Image img = new Image(active ? "./arrow_down_green.png" : "./arrow_down_red.png");
+		view.setImage(img);
 	}
 }
 

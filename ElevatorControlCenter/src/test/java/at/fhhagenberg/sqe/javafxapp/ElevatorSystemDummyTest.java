@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import org.junit.Before;
 import org.junit.Test;
 
-import at.fhhagenberg.sqe.elevator.ElevatorSystemDummy;
+import sqelevator.ElevatorSystemDummy;
 
 public class ElevatorSystemDummyTest 
 {
