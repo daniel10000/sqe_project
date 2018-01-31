@@ -8,8 +8,9 @@ import sqelevator.IElevator;
 import javax.activity.InvalidActivityException;
 
 import at.fhhagenberg.sqe.data.DataUpdater;
-import at.fhhagenberg.sqe.data.DoorStatus;
 import at.fhhagenberg.sqe.data.ElevatorNotifyable;
+import at.fhhagenberg.sqe.domain.DoorStatus;
+import at.fhhagenberg.sqe.domain.ModelNotifyable;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import sqelevator.ElevatorSystemDummy;
 
-public class ElevatorController implements ElevatorNotifyable
+public class ElevatorController implements ElevatorNotifyable, ModelNotifyable
 {
 	private static final int ELEVATOR_NUM = 3;
 	private static final int FLOOR_NUM = 4;
@@ -43,8 +44,8 @@ public class ElevatorController implements ElevatorNotifyable
 	{
 		
 		try {
-			updater = new DataUpdater((IElevator) Naming.lookup("rmi://localhost/ElevatorSim"), FLOOR_NUM, ELEVATOR_NUM);
-//			updater = new DataUpdater(new ElevatorSystemDummy(), FLOOR_NUM, ELEVATOR_NUM);
+//			updater = new DataUpdater((IElevator) Naming.lookup("rmi://localhost/ElevatorSim"), FLOOR_NUM, ELEVATOR_NUM);
+			updater = new DataUpdater(new ElevatorSystemDummy(), FLOOR_NUM, ELEVATOR_NUM);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,6 +54,17 @@ public class ElevatorController implements ElevatorNotifyable
 		
 		updater.registerElevator(this);
 		updater.start();
+	}
+	
+	public void initialize()
+	{
+		// TODO setSelectedElevator(INIT_FLOOR);
+	}
+	
+	public void shutdown()
+	{
+		if(updater != null)
+			updater.stop();
 	}
 	
 	@FXML
@@ -608,6 +620,18 @@ public class ElevatorController implements ElevatorNotifyable
 	{
 		Image img = new Image(active ? "./arrow_down_green.png" : "./arrow_down_red.png");
 		view.setImage(img);
+	}
+
+	@Override
+	public void elevatorNumChanged(int nr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void floorNumChanged(int nr) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

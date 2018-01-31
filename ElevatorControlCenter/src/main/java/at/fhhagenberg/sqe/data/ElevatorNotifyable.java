@@ -1,5 +1,7 @@
 package at.fhhagenberg.sqe.data;
 
+import at.fhhagenberg.sqe.domain.DoorStatus;
+
 public interface ElevatorNotifyable
 {
 	void commitedDirectionChanged(int nr, int direction);
@@ -9,6 +11,8 @@ public interface ElevatorNotifyable
 	void buttonChanged(int nr, int floor, boolean active);
 		
 	void floorChanged(int nr, int floor, DoorStatus status);
+	
+	void elevatorNumChanged(int nr);
 	
 	void positionChanged(int nr, int position);
 	
@@ -24,7 +28,7 @@ public interface ElevatorNotifyable
 	
 	// floor height
 	
-	// floor num
+	void floorNumChanged(int nr);
 	
 	// TODO get services floors
 	// TODO get target

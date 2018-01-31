@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import at.fhhagenberg.sqe.domain.DoorStatus;
 import sqelevator.IElevator;
 
 public class DataUpdater extends TimerTask
@@ -31,6 +32,11 @@ public class DataUpdater extends TimerTask
 	public void start()
 	{
 		timer.schedule(this, 1000, UPDATE_INTERVAL);
+	}
+	
+	public void stop()
+	{
+		timer.cancel();
 	}
 	
 	public void registerElevator(ElevatorNotifyable elevator)
@@ -112,9 +118,37 @@ public class DataUpdater extends TimerTask
 		}
 	}
 	
+	private void notifyElevatorNumChanged(int nr)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.elevatorNumChanged(nr);
+		}
+	}
+	
+	private void notifyFloorNumChanged(int nr)
+	{
+		for(ElevatorNotifyable e : elevators)
+		{
+			e.floorNumChanged(nr);
+		}
+	}
+	
 	@Override
 	public void run()
 	{
+		// general
+		try
+		{
+			notifyElevatorNumChanged(system.getElevatorNum());
+			notifyFloorNumChanged(system.getFloorNum());
+		}
+		catch(RemoteException e)
+		{
+			e.printStackTrace();
+		}
+		
+		// elevator dependent
 		for(int i = 0; i < nrElevators; i++)
 		{
 			try
@@ -134,6 +168,7 @@ public class DataUpdater extends TimerTask
 			}
 		}
 		
+		// floor dependent
 		for(int i = 0; i < nrFloors; i++)
 		{
 			try

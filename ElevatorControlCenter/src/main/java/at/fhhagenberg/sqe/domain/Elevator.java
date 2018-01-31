@@ -1,173 +1,150 @@
 package at.fhhagenberg.sqe.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import at.fhhagenberg.sqe.data.ElevatorNotifyable;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Elevator
 {
-	private IntegerProperty number = new SimpleIntegerProperty();
-	private IntegerProperty direction = new SimpleIntegerProperty();
-	private IntegerProperty acceleration = new SimpleIntegerProperty(); 
-	private IntegerProperty doorStatus = new SimpleIntegerProperty();
-	private IntegerProperty currentFloor = new SimpleIntegerProperty();
-	private IntegerProperty targetFloor = new SimpleIntegerProperty();
-	private IntegerProperty speed = new SimpleIntegerProperty();
-	private IntegerProperty weight = new SimpleIntegerProperty();
-	private IntegerProperty capacity = new SimpleIntegerProperty();
-	
-	
-	private static final Integer FLOORS = 4;
-	
-	private Map<Integer, Boolean> servicedFloors = new HashMap<Integer, Boolean>();;
-	private Map<Integer, Boolean> floorButtons = new HashMap<Integer, Boolean>();
-	
-	public Integer getTargetFloor() 
-	{
-		return targetFloor.get();
-	}
+  private int number;
+  private int direction;
+  private int acceleration;
+  private DoorStatus doorStatus;
+  private int currentFloor;
+  private int targetFloor; 
+  private int speed;
+  private int weight;
+  private int capacity;
+  private int position;
 
-	public void setTargetFloor(Integer targetFloor) 
-	{
-		this.targetFloor.set(targetFloor);
-	}
-	
-	
-	public Map<Integer, Boolean> getFloorButtons() {
-		return floorButtons;
-	}
+  private Set<Integer> servicedFloors = new HashSet<Integer>();
+  private Set<Integer> floorButtonsActive = new HashSet<Integer>();
 
-	public void setFloorButtons(Integer floor, Boolean pressed) 
-	{
-		floorButtons.put(floor, pressed);
-	}
-	
-	public Map<Integer, Boolean> getServicedFloors() {
-		return servicedFloors;
-	}
-	
-	public void setServicedFloors(Integer floor, Boolean service) 
-	{
-		servicedFloors.put(floor, service);
-	}
-	
-	public Elevator(Integer number, Integer capacity) 
-	{
-		this.number.set(number);
-		this.direction.set(2);
-		this.acceleration.set(0);
-		this.doorStatus.set(2);
-		this.currentFloor.set(0);
-		this.targetFloor.set(0);
-		this.speed.set(0);
-		this.weight.set(capacity*155);
-		this.capacity.set(capacity);	
-		
-		for (int i = 0; i < FLOORS; i++) 
-		{
-			floorButtons.put(0, false);
-			if(number % 2 == 0) 
-			{				
-				if(i % 2 == 0) 
-				{
-					servicedFloors.put(i, true);					
-				}
-				else 
-				{
-					servicedFloors.put(i, false);
-				}
-			}
-			else 
-			{
-				if(i % 2 == 0) 
-				{
-					servicedFloors.put(i, false);					
-				}
-				else 
-				{
-					servicedFloors.put(i, true);
-				}
-			}
-		}
-	}
+  public int getTargetFloor()
+  {
+    return targetFloor;
+  }
 
-	public Integer getDirection() 
-	{
-		return direction.get();
-	}
+  public void setTargetFloor(int targetFloor)
+  {
+    this.targetFloor = targetFloor;
+  }
 
-	public void setDirection(Integer direction) 
-	{
-		this.direction.set(direction);
-	}
+  public Set<Integer> getFloorButtonsActive()
+  {
+    return floorButtonsActive;
+  }
 
-	public Integer getAcceleration() 
-	{
-		return acceleration.get();
-	}
+  public void setFloorButton(int floor, boolean active)
+  {
+    if(active)
+    {
+        floorButtonsActive.add(floor);
+    }
+    else
+    {
+        floorButtonsActive.remove(floor);
+    }
+  }
 
-	public void setAcceleration(Integer acceleration) 
-	{
-		this.acceleration.set(acceleration);
-	}
+  public Set<Integer> getServicedFloors()
+  {
+    return servicedFloors;
+  }
 
-	public Integer getDoorStatus() 
-	{
-		return doorStatus.get();
-	}
+  public void setServicedFloors(int floor, boolean service)
+  {
+    if(service)
+      servicedFloors.add(floor);
+    else
+      servicedFloors.remove(floor);
+  }
 
-	public void setDoorStatus(Integer doorStatus) 
-	{
-		this.doorStatus.set(doorStatus);
-	}
+  public Elevator()
+  {
+  }
 
-	public Integer getCurrentFloor() 
-	{
-		return currentFloor.get();
-	}
+  public int getDirection()
+  {
+    return direction;
+  }
 
-	public void setCurrentFloor(Integer currentFloor) 
-	{
-		this.currentFloor.set(currentFloor);
-	}
+  public void setDirection(int direction)
+  {
+    this.direction = direction;
+  }
 
-	public Integer getSpeed() 
-	{
-		return speed.get();
-	}
+  public int getAcceleration() 
+  {
+    return acceleration;
+  }
 
-	public void setSpeed(Integer speed) 
-	{
-		this.speed.set(speed);
-	}
+  public void setAcceleration(int acceleration) 
+  {
+    this.acceleration = acceleration;
+  }
 
-	public Integer getWeight() 
-	{
-		return weight.get();
-	}
+  public DoorStatus getDoorStatus() 
+  {
+    return doorStatus;
+  }
 
-	public void setWeight(Integer weight) 
-	{
-		this.weight.set(weight);
-	}
+  public void setDoorStatus(DoorStatus doorStatus) 
+  {
+    this.doorStatus = doorStatus;
+  }
 
-	public Integer getNumber() 
-	{
-		return number.get();
-	}
+  public int getCurrentFloor() 
+  {
+    return currentFloor;
+  }
 
-	public void setCapacity(Integer capacity) 
-	{
-		this.capacity.set(capacity);
-	}
-	
-	public Integer getCapacity() 
-	{
-		return capacity.get();
-	}
+  public void setCurrentFloor(int currentFloor) 
+  {
+    this.currentFloor = currentFloor;
+  }
+
+  public int getSpeed() 
+  {
+    return speed;
+  }
+
+  public void setSpeed(int speed) 
+  {
+    this.speed = speed;
+  }
+
+  public int getWeight() 
+  {
+    return weight;
+  }
+
+  public void setWeight(int weight) 
+  {
+    this.weight = weight;
+  }
+
+  public int getNumber() 
+  {
+    return number;
+  }
+
+  public void setCapacity(int capacity) 
+  {
+    this.capacity = capacity;
+  }
+  
+  public int getCapacity() 
+  {
+    return capacity;
+  }
+  
+  public void setPosition(int position)
+  {
+    this.position = position;
+  }
+  
+  public int getPosition()
+  {
+    return position;
+  }
 }

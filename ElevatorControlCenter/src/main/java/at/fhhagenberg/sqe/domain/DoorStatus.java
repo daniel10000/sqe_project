@@ -1,4 +1,4 @@
-package at.fhhagenberg.sqe.data;
+package at.fhhagenberg.sqe.domain;
 
 public enum DoorStatus
 {
