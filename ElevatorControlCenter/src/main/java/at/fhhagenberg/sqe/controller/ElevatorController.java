@@ -44,7 +44,7 @@ public class ElevatorController implements ElevatorNotifyable
 		
 		try {
 			updater = new DataUpdater((IElevator) Naming.lookup("rmi://localhost/ElevatorSim"), FLOOR_NUM, ELEVATOR_NUM);
-//			updater = new DataUpdater(new ElevatorSystemDummy());
+//			updater = new DataUpdater(new ElevatorSystemDummy(), FLOOR_NUM, ELEVATOR_NUM);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

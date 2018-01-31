@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import at.fhhagenberg.sqe.data.ElevatorNotifyable;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Elevator //implements ElevatorNotifyable
+public class Elevator
 {
 	private IntegerProperty number = new SimpleIntegerProperty();
 	private IntegerProperty direction = new SimpleIntegerProperty();
@@ -168,14 +170,4 @@ public class Elevator //implements ElevatorNotifyable
 	{
 		return capacity.get();
 	}
-	
-	
-	
-	// ---------------------------------------------------------------------
-	
-//	@Override
-//	public void floorChanged(int nr, int floor)
-//	{
-//		setCurrentFloor(floor);
-//	}
 }

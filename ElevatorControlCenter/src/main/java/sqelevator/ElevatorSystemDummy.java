@@ -4,9 +4,6 @@ import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 
-import at.fhhagenberg.sqe.domain.Elevator;
-import at.fhhagenberg.sqe.domain.Floor;
-
 public class ElevatorSystemDummy implements IElevator
 {
 	private static final Integer ELEVATORS = 3;
@@ -200,4 +197,197 @@ public class ElevatorSystemDummy implements IElevator
 		return 2; // es ist nur ein dummy ....
 	}
 
+	
+	
+	private class Floor 
+	{
+		private boolean upButton;
+		private boolean downButton;
+		
+		public Floor() 
+		{
+			upButton = false;
+			downButton = false;
+		}
+
+		public boolean getUpButton() 
+		{
+			return upButton;
+		}
+
+		public void setUpButton(boolean upButton) 
+		{
+			this.upButton = upButton;
+		}
+
+		public boolean getDownButton()
+		{
+			return downButton;
+		}
+
+		public void setDownButton(boolean downButton)
+		{
+			this.downButton = downButton;
+		}
+	}
+
+	private class Elevator
+	{
+		private int number;
+		private int direction;
+		private int acceleration; 
+		private int doorStatus;
+		private int currentFloor;
+		private int targetFloor;
+		private int speed;
+		private int weight;
+		private int capacity;
+		
+		private Map<Integer, Boolean> servicedFloors = new HashMap<Integer, Boolean>();;
+		private Map<Integer, Boolean> floorButtons = new HashMap<Integer, Boolean>();
+		
+		public int getTargetFloor() 
+		{
+			return targetFloor;
+		}
+
+		public void setTargetFloor(int targetFloor) 
+		{
+			this.targetFloor = targetFloor;
+		}
+		
+		
+		public Map<Integer, Boolean> getFloorButtons() {
+			return floorButtons;
+		}
+
+		public void setFloorButtons(int floor, boolean pressed) 
+		{
+			floorButtons.put(floor, pressed);
+		}
+		
+		public Map<Integer, Boolean> getServicedFloors() {
+			return servicedFloors;
+		}
+		
+		public void setServicedFloors(int floor, boolean service) 
+		{
+			servicedFloors.put(floor, service);
+		}
+		
+		public Elevator(int number, int capacity) 
+		{
+			this.number = number;
+			this.direction = 2;
+			this.acceleration = 0;
+			this.doorStatus = 2;
+			this.currentFloor = 0;
+			this.targetFloor = 0;
+			this.speed = 0;
+			this.weight = capacity*155;
+			this.capacity = capacity;	
+			
+			for (int i = 0; i < FLOORS; i++) 
+			{
+				floorButtons.put(0, false);
+				if(number % 2 == 0) 
+				{				
+					if(i % 2 == 0) 
+					{
+						servicedFloors.put(i, true);					
+					}
+					else 
+					{
+						servicedFloors.put(i, false);
+					}
+				}
+				else 
+				{
+					if(i % 2 == 0) 
+					{
+						servicedFloors.put(i, false);					
+					}
+					else 
+					{
+						servicedFloors.put(i, true);
+					}
+				}
+			}
+		}
+
+		public int getDirection() 
+		{
+			return direction;
+		}
+
+		public void setDirection(int direction) 
+		{
+			this.direction = direction;
+		}
+
+		public int getAcceleration() 
+		{
+			return acceleration;
+		}
+
+		public void setAcceleration(int acceleration) 
+		{
+			this.acceleration = acceleration;
+		}
+
+		public int getDoorStatus() 
+		{
+			return doorStatus;
+		}
+
+		public void setDoorStatus(int doorStatus) 
+		{
+			this.doorStatus = doorStatus;
+		}
+
+		public int getCurrentFloor() 
+		{
+			return currentFloor;
+		}
+
+		public void setCurrentFloor(int currentFloor) 
+		{
+			this.currentFloor = currentFloor;
+		}
+
+		public int getSpeed() 
+		{
+			return speed;
+		}
+
+		public void setSpeed(int speed) 
+		{
+			this.speed = speed;
+		}
+
+		public int getWeight() 
+		{
+			return weight;
+		}
+
+		public void setWeight(int weight) 
+		{
+			this.weight = weight;
+		}
+
+		public int getNumber() 
+		{
+			return number;
+		}
+
+		public void setCapacity(int capacity) 
+		{
+			this.capacity = capacity;
+		}
+		
+		public int getCapacity() 
+		{
+			return capacity;
+		}
+	}
 }
