@@ -65,7 +65,6 @@ public class ElevatorSystemModel implements ElevatorNotifyable, Updateable
       elevator.setAcceleration(accel);
       modelChanged = true;
     }
-    notifyModelChanged();
   }
 
   @Override

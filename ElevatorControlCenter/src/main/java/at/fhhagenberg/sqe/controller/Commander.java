@@ -83,7 +83,6 @@ public class Commander implements Commandable, Updateable
             int nextTarget = getNextTargetFloor(elevator);
             system.setTarget(elevator.getNumber(), nextTarget);
             elevatorTargets.put(elevator, nextTarget);
-            System.out.println("set target " + elevator.getNumber() + " " + nextTarget);
           }
           catch(RemoteException e)
           {
@@ -112,7 +111,6 @@ public class Commander implements Commandable, Updateable
           }
         }
       }
-      
     }
   }
   
