@@ -2,7 +2,6 @@ package at.fhhagenberg.sqe.javafxapp;
 
 import java.rmi.Naming;
 
-import at.fhhagenberg.sqe.controller.Commandable;
 import at.fhhagenberg.sqe.controller.Commander;
 import at.fhhagenberg.sqe.controller.ElevatorController;
 import at.fhhagenberg.sqe.data.DataUpdater;
@@ -27,13 +26,13 @@ public class ElevatorControlCenterApplication extends Application
 		ElevatorController controller = loader.getController();
 		
 //		IElevator elevator = new ElevatorSystemDummy();
-		IElevator elevator = (IElevator)Naming.lookup("rmi://localhost/ElevatorSim"), FLOOR_NUM, ELEVATOR_NUM;
+		IElevator elevator = (IElevator)Naming.lookup("rmi://localhost/ElevatorSim");
 		
     DataUpdater updater = new DataUpdater(elevator);
 
 		ElevatorSystemModel model = new ElevatorSystemModel();
 
-		Commander commander = new Commander(elevator);
+		Commander commander = new Commander(elevator, model);
 		
 		updater.registerElevator(model);
 		updater.registerUpdateable(model);

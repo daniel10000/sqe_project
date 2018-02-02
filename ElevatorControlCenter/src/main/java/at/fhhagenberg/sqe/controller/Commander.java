@@ -3,6 +3,7 @@ package at.fhhagenberg.sqe.controller;
 import java.rmi.RemoteException;
 
 import at.fhhagenberg.sqe.data.Updateable;
+import at.fhhagenberg.sqe.domain.ElevatorSystemModel;
 import sqelevator.IElevator;
 
 public class Commander implements Commandable, Updateable
@@ -11,9 +12,12 @@ public class Commander implements Commandable, Updateable
   private IElevator system;
   private ElevatorMode mode;
 
-  public Commander(IElevator system)
+  private ElevatorSystemModel model;
+  
+  public Commander(IElevator system, ElevatorSystemModel model)
   {
     this.system = system;
+    this.model = model;
     mode = ElevatorMode.Manual;
   }
   
@@ -57,6 +61,7 @@ public class Commander implements Commandable, Updateable
   {
     if(mode == ElevatorMode.Automatic)
     {
+      
     }
   }
 

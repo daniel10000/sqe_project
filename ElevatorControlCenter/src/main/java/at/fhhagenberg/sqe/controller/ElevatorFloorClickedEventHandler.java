@@ -1,7 +1,5 @@
 package at.fhhagenberg.sqe.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -31,5 +29,4 @@ public class ElevatorFloorClickedEventHandler implements EventHandler<MouseEvent
     if(notifyable != null)
       notifyable.elevatorFloorClicked(elevator, floor);
   }
-  
 }

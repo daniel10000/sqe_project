@@ -1,13 +1,8 @@
 package at.fhhagenberg.sqe.controller;
 
 import at.fhhagenberg.sqe.domain.DoorStatus;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -20,9 +15,6 @@ public class ElevatorPresenter
   private Rectangle[] buttons;
   private Button elevatorNumber;
   
-  private ImageView[] upButtons;
-  private ImageView[] downButtons;
-  
   private int elevatorNr;
   
   public ElevatorPresenter(int elevatorNr, int floorCount, ElevatorClickedNotifyable notifyable)
@@ -34,10 +26,6 @@ public class ElevatorPresenter
     floors = new Rectangle[floorCount];
     
     buttons = new Rectangle[floorCount];
-    
-    upButtons = new ImageView[floorCount];
-    
-    downButtons = new ImageView[floorCount];
     
     for(int i = 0; i < floorCount; i++)
     {

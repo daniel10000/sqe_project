@@ -233,7 +233,6 @@ public class ElevatorSystemDummy implements IElevator
 
 	private class Elevator
 	{
-		private int number;
 		private int direction;
 		private int acceleration; 
 		private int doorStatus;
@@ -277,7 +276,6 @@ public class ElevatorSystemDummy implements IElevator
 		
 		public Elevator(int number, int capacity) 
 		{
-			this.number = number;
 			this.direction = 2;
 			this.acceleration = 0;
 			this.doorStatus = 2;
@@ -373,11 +371,6 @@ public class ElevatorSystemDummy implements IElevator
 		public void setWeight(int weight) 
 		{
 			this.weight = weight;
-		}
-
-		public int getNumber() 
-		{
-			return number;
 		}
 
 		public void setCapacity(int capacity) 
