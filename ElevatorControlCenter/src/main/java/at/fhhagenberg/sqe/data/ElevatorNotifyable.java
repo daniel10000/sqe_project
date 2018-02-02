@@ -4,8 +4,6 @@ import at.fhhagenberg.sqe.domain.DoorStatus;
 
 public interface ElevatorNotifyable
 {
-	void commitedDirectionChanged(int nr, int direction);
-	
 	void accelChanged(int nr, int accel);
 	
 	void buttonChanged(int nr, int floor, boolean active);
@@ -26,8 +24,6 @@ public interface ElevatorNotifyable
 	
 	void buttonDownChanged(int floor, boolean active);
 	
-	// floor height
-	
 	void floorNumChanged(int nr);
 	
 	// TODO get services floors
@@ -36,6 +32,7 @@ public interface ElevatorNotifyable
 	// TODO set services floors
 	// TODO set target
 	// TODO get clock tick
+	
 }
 
 

@@ -1,12 +1,19 @@
 package at.fhhagenberg.sqe.javafxapp;
 
+import java.rmi.Naming;
+
+import at.fhhagenberg.sqe.controller.Commandable;
+import at.fhhagenberg.sqe.controller.Commander;
 import at.fhhagenberg.sqe.controller.ElevatorController;
+import at.fhhagenberg.sqe.data.DataUpdater;
 import at.fhhagenberg.sqe.domain.ElevatorSystemModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sqelevator.ElevatorSystemDummy;
+import sqelevator.IElevator;
 
 public class ElevatorControlCenterApplication extends Application 
 {	
@@ -19,9 +26,21 @@ public class ElevatorControlCenterApplication extends Application
 		
 		ElevatorController controller = loader.getController();
 		
-//		ElevatorSystemModel model = new ElevatorSystemModel();
-//		
-//		model.registerModelNotifyable(controller);
+//		IElevator elevator = new ElevatorSystemDummy();
+		IElevator elevator = (IElevator)Naming.lookup("rmi://localhost/ElevatorSim"), FLOOR_NUM, ELEVATOR_NUM;
+		
+    DataUpdater updater = new DataUpdater(elevator);
+
+		ElevatorSystemModel model = new ElevatorSystemModel();
+
+		Commander commander = new Commander(elevator);
+		
+		updater.registerElevator(model);
+		updater.registerUpdateable(model);
+		updater.registerUpdateable(commander);
+		model.registerModelNotifyable(controller);
+		
+		controller.setCommandable(commander);
 		
 		Scene scene = new Scene(root, 500, 500);		
 		scene.getStylesheets().add(getClass().getClassLoader().getResource("styles.css").toExternalForm());
@@ -30,7 +49,10 @@ public class ElevatorControlCenterApplication extends Application
 		primaryStage.setMinWidth(420);
 		primaryStage.setMinHeight(440);
 		primaryStage.setTitle("ElevatorSytem");
-		primaryStage.setOnHidden(e -> controller.shutdown());
+
+		updater.start();
+
+		primaryStage.setOnHidden(e -> updater.stop());		
 		primaryStage.show();
 	}
 	

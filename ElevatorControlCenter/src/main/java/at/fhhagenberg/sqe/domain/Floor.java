@@ -1,51 +1,40 @@
 package at.fhhagenberg.sqe.domain;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public class Floor 
 {
-	private BooleanProperty upButton = new SimpleBooleanProperty();
-	private BooleanProperty downButton = new SimpleBooleanProperty();
-	//private IntegerProperty height = new SimpleIntegerProperty();
-	
-	public Floor() 
-	{
-		//this.height.set(7);
-		this.upButton.set(false);
-		this.downButton.set(false);	
-	}
+  private boolean upButton;
+  private boolean downButton;
+  private int nr;
+  
+  public Floor(int nr)
+  {
+    upButton = false;
+    downButton = false;
+    this.nr = nr;
+  }
 
-	public Boolean getUpButton() 
-	{
-		return upButton.get();
-	}
+  public boolean getUpButton() 
+  {
+    return upButton;
+  }
 
-	public void setUpButton(Boolean upButton) 
-	{
-		this.upButton.set(upButton);
-	}
+  public void setUpButton(boolean upButton) 
+  {
+    this.upButton = upButton;
+  }
 
-	public Boolean getDownButton()
-	{
-		return downButton.get();
-	}
+  public boolean getDownButton()
+  {
+    return downButton;
+  }
 
-	public void setDownButton(Boolean downButton)
-	{
-		this.downButton.set(downButton);
-	}
-	/*
-	public Integer getHeight()
-	{
-		return height.get();
-	}
-
-	public void setHeight(Integer height)
-	{
-		this.height.set(height);
-	}
-	*/
+  public void setDownButton(boolean downButton)
+  {
+    this.downButton = downButton;
+  }
+  
+  public int getNr()
+  {
+    return nr;
+  }
 }

@@ -14,6 +14,7 @@ public class DataUpdater extends TimerTask
 	private static final long UPDATE_INTERVAL = 1000;
 	
 	private Set<ElevatorNotifyable> elevators = new HashSet<ElevatorNotifyable>();
+	private Set<Updateable> updateables = new HashSet<Updateable>();
 	
 	private IElevator system;
 
@@ -22,10 +23,8 @@ public class DataUpdater extends TimerTask
 	private int nrFloors;
 	private int nrElevators;
 
-	public DataUpdater(IElevator system, int nrFloors, int nrElevators)
+	public DataUpdater(IElevator system)
 	{
-		this.nrFloors = nrFloors;
-		this.nrElevators = nrElevators;
 		this.system = system;
 	}
 	
@@ -47,6 +46,16 @@ public class DataUpdater extends TimerTask
 	public void deregisterElevator(ElevatorNotifyable elevator)
 	{
 		elevators.remove(elevator);
+	}
+	
+	public void registerUpdateable(Updateable updateable)
+	{
+	  updateables.add(updateable);
+	}
+	
+	public void deregisterUpdateable(Updateable updateable)
+	{
+	  updateables.remove(updateable);
 	}
 	
 	public IElevator getElevatorSystem()
@@ -134,14 +143,30 @@ public class DataUpdater extends TimerTask
 		}
 	}
 	
+	private void notifyUpdateFinished(long tick)
+	{
+	  for(Updateable u : updateables)
+	  {
+	    u.updateFinished(tick);
+	  }
+	}
+	
+	private boolean initialized = false;
+	
 	@Override
 	public void run()
 	{
 		// general
 		try
 		{
-			notifyElevatorNumChanged(system.getElevatorNum());
-			notifyFloorNumChanged(system.getFloorNum());
+		  if(!initialized)
+		  {
+		    nrElevators = system.getElevatorNum();
+        nrFloors = system.getFloorNum();
+  			notifyElevatorNumChanged(nrElevators);
+  			notifyFloorNumChanged(nrFloors);
+  			initialized = true;
+      }
 		}
 		catch(RemoteException e)
 		{
@@ -165,6 +190,15 @@ public class DataUpdater extends TimerTask
 			catch(RemoteException e)
 			{
 				e.printStackTrace();
+			}
+			
+			try
+			{
+			  notifyUpdateFinished(system.getClockTick());
+			}
+			catch(RemoteException e)
+			{
+			  e.printStackTrace();
 			}
 		}
 		

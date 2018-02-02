@@ -59,8 +59,9 @@ public class Elevator
       servicedFloors.remove(floor);
   }
 
-  public Elevator()
+  public Elevator(int nr)
   {
+    this.number = nr;
   }
 
   public int getDirection()
