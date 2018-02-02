@@ -148,4 +148,9 @@ public class Elevator
   {
     return position;
   }
+  
+  public boolean getAnyButtonPressed()
+  {
+    return floorButtonsActive.size() > 0;
+  }
 }

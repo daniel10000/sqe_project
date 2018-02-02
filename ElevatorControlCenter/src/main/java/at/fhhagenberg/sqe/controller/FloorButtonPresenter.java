@@ -44,7 +44,6 @@ public class FloorButtonPresenter
   
   public void setUpButton(int floor, boolean active)
   {
-    System.out.println("set up button " + floor + " " + active);
     if(floorIsValid(floor))
     {
       upButtons[floor].setImage(new Image(active ? "arrow_up_green.png" : "arrow_up.png"));
@@ -57,7 +56,6 @@ public class FloorButtonPresenter
   
   public void setDownButton(int floor, boolean active)
   {
-    System.out.println("set down button " + floor + " " + active);
     if(floorIsValid(floor))
     {
       downButtons[floor].setImage(new Image(active ? "arrow_down_green.png" : "arrow_down.png"));

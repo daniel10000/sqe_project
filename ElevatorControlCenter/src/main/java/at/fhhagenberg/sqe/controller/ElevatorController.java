@@ -8,6 +8,7 @@ import at.fhhagenberg.sqe.domain.Floor;
 import at.fhhagenberg.sqe.domain.ModelNotifyable;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -20,6 +21,8 @@ public class ElevatorController implements ModelNotifyable, ElevatorClickedNotif
   private static final String UNIT_SPEED = "ft/s";
   private static final String UNIT_WEIGHT = "lbs";
   private static final String UNIT_CAPACITY = "";
+  
+  private static final String CHANGE_MODE_TO = "Change Mode to ";
 
   private static final int INIT_FLOOR = 0;
 
@@ -42,6 +45,7 @@ public class ElevatorController implements ModelNotifyable, ElevatorClickedNotif
   {
     System.out.println("initialized controller");
     setSelectedElevator(INIT_FLOOR);
+    buttonToggleMode.setText(CHANGE_MODE_TO + ElevatorMode.Automatic.toString());
   }
 
   @FXML
@@ -63,8 +67,12 @@ public class ElevatorController implements ModelNotifyable, ElevatorClickedNotif
   TextField textFieldCapacity;
   
   @FXML
+  Button buttonToggleMode;
+  
+  @FXML
   public void toggleMode()
   {
+    buttonToggleMode.setText(CHANGE_MODE_TO + commandable.getMode().toString());
     if(commandable != null)
       commandable.toggleMode();
   }
@@ -153,8 +161,6 @@ public class ElevatorController implements ModelNotifyable, ElevatorClickedNotif
   @Override
   public void initialized(int elevatorCount, int floorCount)
   {
-    System.out.println("initialized " + elevatorCount + " " + floorCount);
-    
     this.floorCount = floorCount;
     this.elevatorCount = elevatorCount;
     

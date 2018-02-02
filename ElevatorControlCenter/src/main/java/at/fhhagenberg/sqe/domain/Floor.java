@@ -33,6 +33,11 @@ public class Floor
     this.downButton = downButton;
   }
   
+  public boolean getAnyButton()
+  {
+    return getDownButton() || getUpButton();
+  }
+  
   public int getNr()
   {
     return nr;
